@@ -1,0 +1,1560 @@
+<!doctype html>
+<html lang="en" data-theme="default">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vextent Documentation</title>
+<link rel="icon" id="fav" type="image/svg+xml" href="data:image/svg+xml,">
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script>try{var saved=localStorage.getItem("vx-theme2");if(saved)document.documentElement.setAttribute("data-theme",saved)}catch(e){}</script>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:var(--body) 16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+a{color:var(--main);text-decoration:var(--under);font-weight:var(--link)}
+a:hover{text-decoration:underline}
+button{font-family:inherit}
+a,.btn,.side a,.dl .row,.pager a,.toc a,.results a,.menu button{transition:background-color var(--fast),color var(--fast),border-color var(--fast),transform var(--fast),box-shadow var(--fast)}
+html.fading *{transition:background-color var(--swap),color var(--swap),border-color var(--swap)!important}
+.hdr{position:sticky;top:0;z-index:30}
+.chrome{display:none}
+.top{height:60px;display:flex;align-items:center;gap:18px;padding:0 24px;background:var(--top);border-bottom:var(--border) solid var(--edge)}
+.brand{font-weight:var(--bold);font-size:20px;letter-spacing:-.02em;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px}
+.lg{height:22px;width:auto;aspect-ratio:504/256;flex:none}
+.brand:hover{text-decoration:none}
+.brand small{font:var(--link) 12px var(--font);color:var(--dim);letter-spacing:.02em}
+.top .sp{flex:1}
+.search{position:relative;width:min(340px,30vw)}
+.search input{width:100%;height:36px;border:var(--border) solid var(--edge);background:var(--bg);color:var(--text);border-radius:var(--round);padding:0 40px 0 12px;font:600 14px var(--font);outline:none}
+.search input:focus{border-color:var(--main)}
+.search kbd{position:absolute;right:8px;top:7px;font:700 11px var(--mono);color:var(--dim);border:1px solid var(--edge);border-radius:3px;padding:1px 6px}
+.results{position:absolute;left:0;right:0;top:42px;background:var(--bg);border:var(--border) solid var(--edge);border-radius:var(--round);display:none;max-height:70vh;overflow-y:auto;z-index:40}
+.results a{display:block;padding:10px 14px;color:var(--text);border-bottom:1px solid var(--edge);font-weight:var(--link)}
+.results a:last-child{border:0}
+.results a:hover,.results a.sel{background:var(--panel);text-decoration:none}
+.results small{display:block;color:var(--dim);font-weight:400;font-size:13px;margin-top:2px}
+.results .none{padding:12px 14px;color:var(--dim)}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 14px;border-radius:var(--round);font:var(--link) 14px var(--font);border:var(--border) solid var(--edge);background:var(--bg);color:var(--text);cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--panel);text-decoration:none;transform:var(--lift)}
+.btn.p{background:var(--btn);border-color:var(--btn);color:var(--onmain)}
+.btn.p:hover{background:var(--btn2);border-color:var(--btn2)}
+.btn.lg{height:44px;padding:0 20px;font-size:15px}
+html[data-theme] .btn.ico iconify-icon{font-size:20px}html[data-theme] .btn.ico{width:36px;padding:0;border:0;background:none;box-shadow:none;color:var(--text2)}html[data-theme] .btn.ico:hover{background:none;color:var(--main)}
+.burger{display:none;width:36px;padding:0;font-size:18px}
+.themewrap{position:relative}
+.menu{position:absolute;right:0;top:44px;min-width:220px;background:var(--bg);border:var(--border) solid var(--edge);border-radius:var(--round);padding:6px;display:none;z-index:50;box-shadow:0 12px 32px rgba(0,0,0,.28)}
+.menu.open{display:block;animation:var(--anim) var(--time) var(--ease) both}
+.menu .mh{font:800 10.5px var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding:8px 10px 4px}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;color:var(--text);padding:8px 10px;border-radius:calc(var(--round) - 1px);font:var(--link) 14px var(--font);cursor:pointer}
+.menu button:hover{background:var(--panel)}
+.menu button.on{background:var(--pick);color:var(--picktext)}
+.menu i{width:14px;height:14px;border-radius:50%;flex:none;border:1px solid rgba(128,128,128,.5)}
+.wrap{display:flex;max-width:1440px;margin:0 auto}
+.side{width:268px;flex:none;position:sticky;top:var(--high);height:calc(100vh - var(--high));overflow:auto;padding:20px 12px 40px 20px;border-right:var(--border) solid var(--edge);background:var(--side)}
+.side .grp{font:800 11px var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:22px 0 6px 10px}
+.side a{display:block;padding:6px 10px;border-radius:var(--round);color:var(--text2);font-weight:var(--link);font-size:14.5px;line-height:1.35}
+.side a:hover{background:var(--panel2);color:var(--text);text-decoration:none}
+.side a.on{background:var(--pick);color:var(--picktext);font-weight:800}
+.content{flex:1;min-width:0;padding:44px 52px 90px;max-width:960px}
+.toc{width:230px;flex:none;position:sticky;top:var(--high);align-self:flex-start;height:calc(100vh - var(--high));overflow:auto;padding:46px 20px 40px 8px}
+.toc b{display:block;font:800 11px var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.toc a{display:block;padding:4px 0 4px 12px;border-left:2px solid var(--edge);color:var(--dim);font-size:13.5px;font-weight:var(--link);line-height:1.4}
+.toc a:hover{color:var(--text);text-decoration:none}
+.toc a.on{color:var(--main);border-color:var(--main)}
+.crumb{font:800 12px var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 8px}
+h1{font-size:var(--big);line-height:1.1;margin:0 0 20px;font-weight:var(--bold);letter-spacing:var(--bigspace)}
+h2.sec{font-size:24px;font-weight:var(--bold);letter-spacing:-.02em;margin:48px 0 10px;padding-top:24px;border-top:var(--border) solid var(--edge)}
+h3{font-size:20px;line-height:1.3;margin:38px 0 6px;font-weight:var(--bold);letter-spacing:-.01em;scroll-margin-top:calc(var(--high) + 20px)}
+p{margin:14px 0}
+ul,ol.s{padding-left:22px}
+li{margin:6px 0}
+b,strong{font-weight:800}
+code{font:500 .86em var(--mono);background:var(--panel2);color:var(--text);padding:1px 5px;border-radius:3px}
+pre{position:relative;background:var(--code);color:var(--codetext);border-radius:var(--round);padding:16px 18px;overflow:auto;font:500 13.5px/1.65 var(--mono);margin:18px 0;tab-size:4;border:var(--border) solid var(--codeedge)}
+pre code{background:none;color:inherit;padding:0;font:inherit}
+pre .cp{position:absolute;top:8px;right:8px;font:700 11.5px var(--font);background:rgba(128,128,140,.25);color:inherit;border:1px solid rgba(128,128,140,.5);padding:3px 9px;border-radius:3px;cursor:pointer;opacity:0}
+pre:hover .cp,pre .cp:focus{opacity:1}
+.cm{color:var(--cmt);font-style:italic}.st{color:var(--str)}.nu{color:var(--num)}.kw{color:var(--kw);font-weight:700}.vr{color:var(--vr)}
+.note,.warn{margin:22px 0;padding:12px 16px;border-radius:var(--round);border:var(--border) solid var(--edge);border-left-width:4px;font-size:15px;background:var(--panel)}
+.note{border-left-color:var(--ok)}.warn{border-left-color:var(--warn)}
+.note b:first-child,.warn b:first-child{display:block;font:800 11.5px var(--font);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.note b:first-child{color:var(--ok)}.warn b:first-child{color:var(--warn)}
+table{border-collapse:collapse;width:100%;margin:20px 0;font-size:14.5px;line-height:1.5;display:block;overflow-x:auto}
+th,td{text-align:left;padding:10px 14px;border-bottom:var(--border) solid var(--edge);vertical-align:top}
+th{font:800 11.5px var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);border-bottom:calc(var(--border)*2) solid var(--edge)}
+td code{white-space:nowrap}td.wrap code{white-space:normal}
+.pager{display:flex;gap:16px;margin-top:64px;padding-top:24px;border-top:var(--border) solid var(--edge)}
+.pager a{flex:1;display:block;border:var(--border) solid var(--edge);border-radius:var(--round);padding:12px 16px;color:var(--text)}
+.pager a:hover{border-color:var(--main);text-decoration:none;transform:var(--lift)}
+.pager small{display:block;font:800 11px var(--font);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.pager span{font-weight:800;font-size:16px}
+.pager .nx{text-align:right}
+.intro{font-size:19px;color:var(--text2);max-width:660px;margin:0 0 22px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 6px}
+.dl{width:100%;margin:10px 0 4px;border-top:var(--border) solid var(--edge)}
+.dl .row{display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:center;padding:16px 4px;border-bottom:var(--border) solid var(--edge)}
+.dl .row:hover{transform:var(--lift)}
+.dl .logo{width:64px;height:64px;display:grid;place-items:center}
+.dl .logo img{width:60px;height:60px;object-fit:contain;filter:var(--fx)}
+.dl .logo .lg{width:64px;height:auto}
+.dl .logo iconify-icon{font-size:54px;color:var(--ic,var(--b))}
+.dl .name{font-weight:800;font-size:17px;line-height:1.3}
+.dl .name i{font:700 11px var(--font);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-left:8px}
+.dl .desc{color:var(--text2);font-size:14px;line-height:1.5;margin-top:2px}
+.dl .src{font-size:12.5px;color:var(--dim);margin-top:2px;font-weight:600}
+.dlh{font:800 12px var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:34px 0 8px}
+.links{list-style:none;padding:0;margin:8px 0}
+.links li{padding:10px 0;border-bottom:var(--border) solid var(--edge);margin:0}
+.links span{color:var(--text2);font-weight:400}
+.foot{margin-top:60px;color:var(--dim);font-size:13.5px;font-weight:600}
+.page.enter{animation:var(--anim) var(--time) var(--ease) both}
+@keyframes slideup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:scale(.985) translateY(6px)}to{opacity:1;transform:none}}
+@keyframes macin{0%{opacity:0;transform:scale(.97) translateY(10px)}60%{opacity:1;transform:scale(1.006)}100%{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes step{from{opacity:0}to{opacity:1}}
+@keyframes bounce{0%{opacity:0;transform:scale(.94) translateY(12px)}55%{opacity:1;transform:scale(1.015)}100%{opacity:1;transform:none}}
+@keyframes ghin{from{opacity:0}to{opacity:1}}
+@keyframes typein{from{opacity:0;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes swoosh{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes unfold{from{opacity:0;transform:perspective(900px) rotateX(-6deg) translateY(-8px);transform-origin:top}to{opacity:1;transform:none}}
+@keyframes winopen{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+body.ready .app{animation:winopen .5s cubic-bezier(.2,.9,.3,1.1) both}
+@media (prefers-reduced-motion:reduce){:root,html[data-theme]{--anim:none!important;--fast:0s!important;--swap:0s!important;--lift:none!important}body.ready .app{animation:none}html{scroll-behavior:auto}}
+@keyframes caret{50%{opacity:0}}
+@keyframes aero{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes ubuntu{0%{opacity:0;transform:translateY(24px) scale(.97)}60%{opacity:1;transform:translateY(-3px)}100%{opacity:1;transform:none}}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--edge);border:3px solid transparent;background-clip:content-box;border-radius:var(--round)}
+::-webkit-scrollbar-thumb:hover{background:var(--dim);background-clip:content-box}
+::-webkit-scrollbar-corner{background:transparent}
+@supports not selector(::-webkit-scrollbar){*{scrollbar-width:thin;scrollbar-color:var(--edge) transparent}}
+.menu{max-height:min(72vh,540px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+@keyframes glitch{0%{opacity:0;transform:translateX(-12px);clip-path:inset(0 0 60% 0)}25%{opacity:1;transform:translateX(8px);clip-path:inset(40% 0 0 0)}50%{transform:translateX(-4px);clip-path:inset(0 0 20% 0)}75%{transform:translateX(3px)}100%{opacity:1;transform:none;clip-path:inset(0)}}
+html[data-theme] #modrinth-btn:hover{color:#1bd96a}
+</style>
+<style>
+:root,[data-theme="default"]{
+--bg:#2b2c2f;--panel:#323336;--panel2:#3a3b3f;--text:#e8e9eb;--text2:#b4b6bb;--dim:#8a8c93;--edge:#44464b;--main:#b79fd0;--main2:#cdb9e2;--tint:#3b3445;--btn:#b79fd0;--btn2:#cdb9e2;--onmain:#1e1a24;
+--code:#1e1f22;--codetext:#dcdde1;--codeedge:#17181a;--ok:#8cc3a4;--warn:#d9b06a;--side:#27282b;--top:#27282b;--pick:#3b3445;--picktext:#cdb9e2;
+--cmt:#858892;--str:#a3c9ad;--num:#d8b987;--kw:#c3a9dd;--vr:#d9a9c2;
+--round:4px;--border:1px;--font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+--bold:900;--body:500;--link:700;--shadow:none;--high:60px;--flip:brightness(0) invert(.92);--under:none;
+--anim:slideup;--time:.32s;--ease:cubic-bezier(.2,.7,.2,1);--fast:.16s ease;--swap:.3s;--lift:none;--big:42px;--bigspace:-.03em;
+}
+:root,[data-theme]{--l1:#cdb9e2;--l2:#8c63d8;--l3:#2c1a58;--fx:none}
+[data-theme="deep"]{--bg:#000;--panel:#0a0a0b;--panel2:#151517;--text:#ececee;--text2:#a6a6ad;--dim:#74747c;--edge:#1c1c1f;--main:#b79fd0;--main2:#d0bde4;--tint:#1a1522;--btn:#b79fd0;--btn2:#d0bde4;--side:#050505;--top:#050505;--pick:#1a1522;--picktext:#d0bde4;--code:#060607;--codeedge:#141416;--anim:fade;--time:.55s;--ease:ease-out;--fast:.28s ease;--swap:.45s}
+[data-theme="contrast"]{--bg:#000;--panel:#000;--panel2:#1a1a1a;--text:#fff;--text2:#fff;--dim:#e6e6e6;--edge:#fff;--main:#ffd60a;--main2:#fff;--tint:#000;--btn:#ffd60a;--btn2:#fff;--onmain:#000;--side:#000;--top:#000;--pick:#ffd60a;--picktext:#000;--code:#000;--codetext:#fff;--codeedge:#fff;--ok:#5dff9a;--warn:#ffd60a;--border:2px;--round:2px;--under:underline;--cmt:#cfcfcf;--str:#7dffb0;--num:#ffb36b;--kw:#7fd4ff;--vr:#ff9ee0;--anim:none;--time:0s;--fast:0s;--swap:0s}
+[data-theme="lightcontrast"]{--bg:#fff;--panel:#fff;--panel2:#ececec;--text:#000;--text2:#000;--dim:#222;--edge:#000;--main:#2a0f7a;--main2:#000;--tint:#fff;--btn:#2a0f7a;--btn2:#000;--onmain:#fff;--side:#fff;--top:#fff;--pick:#2a0f7a;--picktext:#fff;--code:#fff;--codetext:#000;--codeedge:#000;--ok:#00502a;--warn:#6b3a00;--border:2px;--round:2px;--under:underline;--flip:none;--cmt:#4a4a4a;--str:#00502a;--num:#7a3a00;--kw:#2a0f7a;--vr:#8a0050;--anim:none;--time:0s;--fast:0s;--swap:0s}
+[data-theme="bright"]{--bg:#ffffff;--panel:#f5f6f8;--panel2:#e9ebef;--text:#14161a;--text2:#4a4f59;--dim:#7b818d;--edge:#e3e6eb;--main:#7a52b3;--main2:#5e3a94;--tint:#f0eaf8;--btn:#7a52b3;--btn2:#5e3a94;--onmain:#fff;--side:#fbfbfc;--top:#ffffff;--pick:#f0eaf8;--picktext:#5e3a94;--code:#f5f6f8;--codetext:#1d2026;--codeedge:#e3e6eb;--ok:#1f7a4d;--warn:#946000;--flip:none;--cmt:#8a909c;--str:#1f7a4d;--num:#a35a00;--kw:#6b3fa8;--vr:#b23a7a;--round:8px;--anim:pop;--time:.26s;--ease:cubic-bezier(.2,.8,.2,1);--fast:.18s ease}
+[data-theme="modrinth"]{--bg:#16181c;--panel:#1d1f23;--panel2:#26292f;--text:#ecf9fb;--text2:#b0bac5;--dim:#8f98a4;--edge:#2d3037;--main:#1bd96a;--main2:#4bec8c;--tint:#173b2a;--btn:#1bd96a;--btn2:#4bec8c;--onmain:#06210f;--side:#1a1c20;--top:#1a1c20;--pick:#173b2a;--picktext:#1bd96a;--code:#101215;--codeedge:#26292f;--ok:#1bd96a;--warn:#ffa347;--round:14px;--kw:#1bd96a;--str:#9ae8bd;--num:#ffa347;--vr:#ff8fb1;--cmt:#79828f;--bold:800;--anim:bounce;--time:.5s;--ease:cubic-bezier(.34,1.56,.64,1);--fast:.2s cubic-bezier(.34,1.56,.64,1);--lift:scale(1.03)}
+[data-theme="ghdark"]{--bg:#0d1117;--panel:#161b22;--panel2:#21262d;--text:#e6edf3;--text2:#9198a1;--dim:#7d8590;--edge:#30363d;--main:#4493f8;--main2:#79b8ff;--tint:#10243e;--btn:#238636;--btn2:#2ea043;--onmain:#fff;--side:#0d1117;--top:#161b22;--pick:#1f2937;--picktext:#e6edf3;--code:#161b22;--codetext:#e6edf3;--codeedge:#30363d;--ok:#3fb950;--warn:#d29922;--round:6px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;--bold:600;--body:400;--link:600;--kw:#ff7b72;--str:#a5d6ff;--num:#79c0ff;--vr:#ffa657;--cmt:#8b949e;--anim:ghin;--time:.14s;--ease:ease;--fast:.08s ease;--big:32px;--bigspace:0}
+[data-theme="ghlight"]{--bg:#ffffff;--panel:#f6f8fa;--panel2:#eaeef2;--text:#1f2328;--text2:#59636e;--dim:#818b98;--edge:#d1d9e0;--main:#0969da;--main2:#0550ae;--tint:#ddf4ff;--btn:#1f883d;--btn2:#1a7f37;--onmain:#fff;--side:#ffffff;--top:#f6f8fa;--pick:#eaeef2;--picktext:#1f2328;--code:#f6f8fa;--codetext:#1f2328;--codeedge:#d1d9e0;--ok:#1a7f37;--warn:#9a6700;--round:6px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;--bold:600;--body:400;--link:600;--flip:none;--kw:#cf222e;--str:#0a3069;--num:#0550ae;--vr:#953800;--cmt:#6e7781;--anim:ghin;--time:.14s;--ease:ease;--fast:.08s ease;--big:32px;--bigspace:0}
+[data-theme="macos"]{--bg:#ffffff;--panel:#f5f5f7;--panel2:#e8e8ed;--text:#1d1d1f;--text2:#515154;--dim:#86868b;--edge:#d8d8dd;--main:#0a6cff;--main2:#0050c8;--tint:#e5efff;--btn:#0a6cff;--btn2:#0a5ad6;--onmain:#fff;--side:rgba(236,236,241,.82);--top:#ececf0;--pick:#0a6cff;--picktext:#fff;--code:#1e1e20;--codetext:#e8e8ea;--codeedge:#111;--ok:#1d8a3a;--warn:#a05a00;--round:7px;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"SF Mono",ui-monospace,Menlo,Monaco,Consolas,monospace;--bold:700;--body:400;--link:600;--flip:none;--high:92px;--kw:#ff79c6;--str:#8be9a8;--num:#ffb86c;--vr:#8fb8ff;--cmt:#8a8d99;--anim:macin;--time:.5s;--ease:cubic-bezier(.34,1.3,.64,1);--fast:.2s cubic-bezier(.25,.8,.25,1);--swap:.4s;--bigspace:-.02em}
+[data-theme="win11"]{--bg:#fbfbfb;--panel:#f3f3f3;--panel2:#e6e6e6;--text:#1a1a1a;--text2:#4d4d4d;--dim:#767676;--edge:#e0e0e0;--main:#0067c0;--main2:#003e92;--tint:#e5f1fb;--btn:#0067c0;--btn2:#005aa8;--onmain:#fff;--side:#f3f3f3;--top:#eaeaea;--pick:#e5e5e5;--picktext:#1a1a1a;--code:#202020;--codetext:#f0f0f0;--codeedge:#111;--ok:#0f7b0f;--warn:#9d5d00;--round:6px;--font:"Segoe UI Variable Text","Segoe UI Variable","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;--mono:"Cascadia Mono","Cascadia Code",Consolas,ui-monospace,monospace;--bold:600;--body:400;--link:600;--flip:none;--high:96px;--kw:#7dc4ff;--str:#a8e3b0;--num:#ffc27a;--vr:#f4a3d0;--cmt:#8e8e8e;--anim:rise;--time:.42s;--ease:cubic-bezier(.1,.9,.2,1);--fast:.15s cubic-bezier(.1,.9,.2,1);--swap:.3s;--bigspace:-.01em}
+[data-theme="winxp"]{--bg:#ffffff;--panel:#ece9d8;--panel2:#d6d2c2;--text:#000;--text2:#1c1c1c;--dim:#555;--edge:#aca899;--main:#0645ad;--main2:#0b2e8a;--tint:#dbe7ff;--btn:#3a6ea5;--btn2:#2a5a92;--onmain:#fff;--side:#ece9d8;--top:#ece9d8;--pick:#316ac5;--picktext:#fff;--code:#ffffff;--codetext:#000;--codeedge:#7f9db9;--ok:#1d6b1d;--warn:#8a4b00;--round:3px;--font:Tahoma,"Segoe UI",Verdana,Geneva,sans-serif;--mono:"Lucida Console",Consolas,"Courier New",monospace;--bold:700;--body:400;--link:400;--flip:none;--high:94px;--kw:#0000cc;--str:#008000;--num:#cc6600;--vr:#990099;--cmt:#707070;--anim:step;--time:.2s;--ease:steps(4,end);--fast:0s;--swap:0s;--big:28px;--bigspace:0}
+[data-theme="win95"]{--bg:#ffffff;--panel:#c0c0c0;--panel2:#dfdfdf;--text:#000;--text2:#000;--dim:#404040;--edge:#808080;--main:#000080;--main2:#0000c0;--tint:#d4d0c8;--btn:#c0c0c0;--btn2:#dfdfdf;--onmain:#000;--side:#fff;--top:#c0c0c0;--pick:#000080;--picktext:#fff;--code:#000;--codetext:#c0c0c0;--codeedge:#808080;--cmt:#808080;--str:#55ff55;--num:#ffff55;--kw:#55ffff;--vr:#ff55ff;--font:"MS Sans Serif",Tahoma,Verdana,Arial,sans-serif;--mono:"Fixedsys","Lucida Console","Courier New",monospace;--round:0px;--bold:700;--body:400;--link:400;--big:26px;--bigspace:0;--high:48px;--anim:step;--time:.2s;--ease:steps(4,end);--fast:0s;--swap:0s;--flip:none}
+[data-theme="win7"]{--bg:#ffffff;--panel:#f1f5fb;--panel2:#dfe9f7;--text:#1e1e1e;--text2:#3b3f46;--dim:#6b7380;--edge:#a9b8cf;--main:#1e5bb8;--main2:#0f3f8c;--tint:#dbe9fb;--btn:#2f7bd8;--btn2:#4a95ee;--onmain:#fff;--side:#eef3fa;--top:#e6eef9;--pick:#dbe9fb;--picktext:#0f3f8c;--font:"Segoe UI",Tahoma,Arial,sans-serif;--round:3px;--bold:600;--body:400;--link:400;--big:34px;--bigspace:0;--high:52px;--anim:aero;--time:.4s;--ease:cubic-bezier(.2,.8,.2,1);--fast:.15s ease;--swap:.3s;--flip:none}
+[data-theme="ubuntu"]{--bg:#fafafa;--panel:#f0f0f0;--panel2:#e4e4e4;--text:#3d3d3d;--text2:#555;--dim:#7a7a7a;--edge:#d6d6d6;--main:#c34113;--main2:#e95420;--tint:#fbe3d9;--btn:#e95420;--btn2:#f06a3a;--onmain:#fff;--side:#f0f0f0;--top:#ebebeb;--pick:#fbe3d9;--picktext:#a8340c;--code:#2d2d2d;--codetext:#f2f2f2;--codeedge:#2d2d2d;--font:Ubuntu,Cantarell,"Noto Sans",system-ui,sans-serif;--mono:"Ubuntu Mono","DejaVu Sans Mono",ui-monospace,monospace;--round:8px;--bold:700;--body:400;--link:500;--big:36px;--bigspace:0;--high:56px;--anim:ubuntu;--time:.45s;--ease:cubic-bezier(.2,.9,.3,1.15);--fast:.18s ease;--swap:.35s;--flip:none}
+[data-theme="nord"]{--bg:#2e3440;--panel:#3b4252;--panel2:#434c5e;--text:#eceff4;--text2:#d8dee9;--dim:#8f9bb3;--edge:#4c566a;--main:#88c0d0;--main2:#8fbcbb;--tint:#36404f;--btn:#5e81ac;--btn2:#81a1c1;--onmain:#eceff4;--side:#2b303b;--top:#2b303b;--pick:#434c5e;--picktext:#88c0d0;--code:#242933;--codetext:#d8dee9;--codeedge:#1f242d;--cmt:#6c7a96;--str:#a3be8c;--num:#b48ead;--kw:#81a1c1;--vr:#ebcb8b;--round:6px;--anim:fade;--time:.5s;--ease:ease}
+[data-theme="dracula"]{--bg:#282a36;--panel:#21222c;--panel2:#343746;--text:#f8f8f2;--text2:#cfcfe6;--dim:#8b8fb0;--edge:#44475a;--main:#bd93f9;--main2:#d6b8ff;--tint:#3a3250;--btn:#bd93f9;--btn2:#d6b8ff;--onmain:#1b1033;--side:#21222c;--top:#21222c;--pick:#44475a;--picktext:#ff79c6;--code:#1e1f29;--codetext:#f8f8f2;--codeedge:#191a21;--cmt:#6272a4;--str:#f1fa8c;--num:#ffb86c;--kw:#ff79c6;--vr:#8be9fd;--round:8px;--anim:pop;--time:.35s}
+[data-theme="solarized"]{--bg:#fdf6e3;--panel:#eee8d5;--panel2:#e4ddc4;--text:#586e75;--text2:#657b83;--dim:#93a1a1;--edge:#d9d2bb;--main:#268bd2;--main2:#1c6aa3;--tint:#e6e9dc;--btn:#268bd2;--btn2:#1c6aa3;--onmain:#fdf6e3;--side:#f5eed9;--top:#eee8d5;--pick:#e4ddc4;--picktext:#073642;--code:#002b36;--codetext:#93a1a1;--codeedge:#002b36;--cmt:#586e75;--str:#859900;--num:#cb4b16;--kw:#268bd2;--vr:#d33682;--round:4px;--anim:slideup;--time:.45s}
+[data-theme="gruvbox"]{--bg:#282828;--panel:#32302f;--panel2:#3c3836;--text:#ebdbb2;--text2:#d5c4a1;--dim:#928374;--edge:#504945;--main:#fabd2f;--main2:#fe8019;--tint:#3c3836;--btn:#d79921;--btn2:#fabd2f;--onmain:#1d2021;--side:#1d2021;--top:#1d2021;--pick:#3c3836;--picktext:#fabd2f;--code:#1d2021;--codetext:#ebdbb2;--codeedge:#1d2021;--cmt:#928374;--str:#b8bb26;--num:#d3869b;--kw:#fb4934;--vr:#83a598;--round:4px;--anim:bounce;--time:.4s}
+[data-theme="cyber"]{--bg:#0b0716;--panel:#130a24;--panel2:#1d1136;--text:#f1ecff;--text2:#c9bfe8;--dim:#8d7fb5;--edge:#3a1f6b;--main:#05d9e8;--main2:#6ff3ff;--tint:#1a1040;--btn:#ff2a6d;--btn2:#ff5c91;--onmain:#fff;--side:#090512;--top:#090512;--pick:#1d1136;--picktext:#05d9e8;--code:#060310;--codetext:#e6e0ff;--codeedge:#3a1f6b;--cmt:#7a6aa8;--str:#05ffa1;--num:#ffb86c;--kw:#ff2a6d;--vr:#05d9e8;--font:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;--round:0px;--anim:glitch;--time:.45s;--ease:steps(9,end)}
+[data-theme="deep"]{--l1:#c9a8ff;--l2:#7a3ee0;--l3:#1a0838}
+[data-theme="contrast"]{--l1:#ffd60a;--l2:#ffb300;--l3:#7a5200}
+[data-theme="lightcontrast"]{--l1:#2a0f7a;--l2:#1a0a52;--l3:#000}
+[data-theme="ocean"]{--bg:#0b1d2a;--panel:#10283a;--panel2:#163549;--text:#e6f4fa;--text2:#a9c9d8;--dim:#6f95a8;--edge:#1f4560;--main:#3fc1e0;--main2:#7ad8ee;--tint:#12384d;--btn:#1e9fc0;--btn2:#3fc1e0;--onmain:#02202b;--side:#081824;--top:#081824;--pick:#12384d;--picktext:#7ad8ee;--code:#06141d;--codetext:#d6edf6;--codeedge:#04101a;--cmt:#7a8a96;--str:#a3d9a5;--num:#f0b37a;--kw:#8fc4ff;--vr:#e6a2d0;--round:6px;--anim:slideup;--time:.5s;--l1:#b6ecf8;--l2:#3fc1e0;--l3:#0b5a73}
+[data-theme="forest"]{--bg:#121c16;--panel:#18261d;--panel2:#1f3226;--text:#e4f1e6;--text2:#b3ccb8;--dim:#7a9a82;--edge:#2a4533;--main:#6fcf8a;--main2:#9be3b0;--tint:#1b3a26;--btn:#3fa862;--btn2:#6fcf8a;--onmain:#06210f;--side:#0e1812;--top:#0e1812;--pick:#1b3a26;--picktext:#9be3b0;--code:#0b130e;--codetext:#dcebdf;--codeedge:#08100b;--cmt:#7a8a96;--str:#a3d9a5;--num:#f0b37a;--kw:#8fc4ff;--vr:#e6a2d0;--round:6px;--anim:fade;--time:.6s;--l1:#c4f2d2;--l2:#6fcf8a;--l3:#1e6a37}
+[data-theme="rose"]{--bg:#fff7f9;--panel:#fdeaf0;--panel2:#f8d8e3;--text:#3a1f2a;--text2:#6b4455;--dim:#a07b8a;--edge:#efc6d4;--main:#c2185b;--main2:#8e0e42;--tint:#fbdce8;--btn:#d81b60;--btn2:#ad1457;--onmain:#fff;--side:#fdf0f4;--top:#fdf0f4;--pick:#fbdce8;--picktext:#8e0e42;--code:#3a1f2a;--codetext:#fde8ef;--codeedge:#2a1520;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:10px;--anim:pop;--time:.4s;--flip:none;--l1:#e91e63;--l2:#a3124b;--l3:#4a0a23}
+[data-theme="mono"]{--bg:#f5f5f5;--panel:#ebebeb;--panel2:#dedede;--text:#1a1a1a;--text2:#444;--dim:#777;--edge:#d0d0d0;--main:#111;--main2:#000;--tint:#e4e4e4;--btn:#111;--btn2:#333;--onmain:#fff;--side:#efefef;--top:#efefef;--pick:#dcdcdc;--picktext:#000;--code:#1a1a1a;--codetext:#eee;--codeedge:#000;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:0px;--anim:fade;--time:.3s;--flip:none;--l1:#555;--l2:#222;--l3:#000}
+[data-theme="discord"]{--bg:#313338;--panel:#2b2d31;--panel2:#383a40;--text:#f2f3f5;--text2:#b5bac1;--dim:#80848e;--edge:#3f4147;--main:#949cf7;--main2:#b4baff;--tint:#3b3e5c;--btn:#5865f2;--btn2:#4752c4;--onmain:#fff;--side:#2b2d31;--top:#232428;--pick:#404249;--picktext:#fff;--code:#1e1f22;--codetext:#dbdee1;--codeedge:#1a1b1e;--cmt:#7a8a96;--str:#a3d9a5;--num:#f0b37a;--kw:#8fc4ff;--vr:#e6a2d0;--round:8px;--font:"gg sans","Noto Sans",Inter,sans-serif;--anim:pop;--time:.3s;--l1:#c7ccff;--l2:#5865f2;--l3:#2a2f8a}
+[data-theme="spotify"]{--bg:#121212;--panel:#181818;--panel2:#282828;--text:#ffffff;--text2:#b3b3b3;--dim:#7a7a7a;--edge:#2a2a2a;--main:#1ed760;--main2:#3be477;--tint:#1a2a20;--btn:#1ed760;--btn2:#3be477;--onmain:#000;--side:#000;--top:#000;--pick:#282828;--picktext:#fff;--code:#0a0a0a;--codetext:#e8e8e8;--codeedge:#0a0a0a;--cmt:#7a8a96;--str:#a3d9a5;--num:#f0b37a;--kw:#8fc4ff;--vr:#e6a2d0;--round:8px;--font:"Circular Std",Inter,sans-serif;--anim:slideup;--time:.4s;--l1:#7dffa8;--l2:#1ed760;--l3:#0b5a28}
+[data-theme="notion"]{--bg:#ffffff;--panel:#f7f6f3;--panel2:#efedea;--text:#37352f;--text2:#5f5e5b;--dim:#9b9a97;--edge:#e9e9e7;--main:#2383e2;--main2:#0b6ec5;--tint:#e7f3f8;--btn:#2383e2;--btn2:#0b6ec5;--onmain:#fff;--side:#fbfbfa;--top:#ffffff;--pick:#efedea;--picktext:#37352f;--code:#2f3437;--codetext:#ebeced;--codeedge:#2f3437;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:4px;--font:ui-sans-serif,-apple-system,"Segoe UI",Inter,sans-serif;--bold:700;--link:500;--anim:fade;--time:.25s;--flip:none;--l1:#6f6e69;--l2:#37352f;--l3:#191919}
+[data-theme="hn"]{--bg:#f6f6ef;--panel:#ebebdf;--panel2:#e2e2d4;--text:#000000;--text2:#333333;--dim:#828282;--edge:#d9d9cc;--main:#ff6600;--main2:#cc5200;--tint:#ffe9d9;--btn:#ff6600;--btn2:#cc5200;--onmain:#000;--side:#f6f6ef;--top:#ff6600;--pick:#ffe0c8;--picktext:#000;--code:#2b2b24;--codetext:#eee;--codeedge:#1e1e18;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:0px;--font:Verdana,Geneva,sans-serif;--bold:700;--body:400;--link:400;--big:24px;--bigspace:0;--high:36px;--anim:none;--time:0s;--flip:none;--l1:#ff8a3d;--l2:#ff6600;--l3:#7a2f00}
+[data-theme="steam"]{--bg:#1b2838;--panel:#16202d;--panel2:#2a475e;--text:#c7d5e0;--text2:#8f98a0;--dim:#67707b;--edge:#2a475e;--main:#66c0f4;--main2:#a4d8f8;--tint:#1f3a50;--btn:#5c7e10;--btn2:#75b022;--onmain:#fff;--side:#171a21;--top:#171a21;--pick:#2a475e;--picktext:#fff;--code:#101822;--codetext:#c7d5e0;--codeedge:#0b121a;--cmt:#7a8a96;--str:#a3d9a5;--num:#f0b37a;--kw:#8fc4ff;--vr:#e6a2d0;--round:2px;--font:"Motiva Sans",Arial,Helvetica,sans-serif;--anim:fade;--time:.35s;--l1:#bfe6fb;--l2:#66c0f4;--l3:#1b4a6b}
+[data-theme="stackoverflow"]{--bg:#ffffff;--panel:#f8f9f9;--panel2:#e3e6e8;--text:#232629;--text2:#3b4045;--dim:#6a737c;--edge:#d6d9dc;--main:#0074cc;--main2:#0a95ff;--tint:#e1ecf4;--btn:#0a95ff;--btn2:#0074cc;--onmain:#fff;--side:#ffffff;--top:#f8f9f9;--pick:#f1f2f3;--picktext:#0c0d0e;--code:#2d2d2d;--codetext:#e8e8e8;--codeedge:#1f1f1f;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:3px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","Liberation Sans",sans-serif;--bold:700;--link:400;--anim:fade;--time:.25s;--flip:none;--l1:#f48024;--l2:#bc5a0c;--l3:#4a2205}
+[data-theme="win10"]{--bg:#ffffff;--panel:#f2f2f2;--panel2:#e5e5e5;--text:#000000;--text2:#333333;--dim:#6f6f6f;--edge:#cccccc;--main:#0078d7;--main2:#005a9e;--tint:#cce4f7;--btn:#0078d7;--btn2:#005a9e;--onmain:#fff;--side:#f2f2f2;--top:#ffffff;--pick:#cce4f7;--picktext:#000000;--code:#1f1f1f;--codetext:#e8e8e8;--codeedge:#171717;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:0px;--font:"Segoe UI",Tahoma,sans-serif;--bold:600;--body:400;--link:400;--anim:rise;--time:.3s;--flip:none;--l1:#4cc2ff;--l2:#0078d7;--l3:#003e92}
+[data-theme="kde"]{--bg:#fcfcfc;--panel:#eff0f1;--panel2:#e0e2e4;--text:#232627;--text2:#4d4d4d;--dim:#7f8c8d;--edge:#bdc3c7;--main:#3daee9;--main2:#1d99f3;--tint:#d4eaf7;--btn:#3daee9;--btn2:#1d99f3;--onmain:#fff;--side:#eff0f1;--top:#e3e5e7;--pick:#3daee9;--picktext:#ffffff;--code:#232629;--codetext:#eff0f1;--codeedge:#1b1e20;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:3px;--font:"Noto Sans","Open Sans",sans-serif;--bold:600;--link:400;--anim:pop;--time:.3s;--flip:none;--l1:#7fd0ff;--l2:#3daee9;--l3:#1a5e8c}
+[data-theme="macos9"]{--bg:#ffffff;--panel:#dddddd;--panel2:#cccccc;--text:#000000;--text2:#222222;--dim:#555555;--edge:#999999;--main:#3366cc;--main2:#1a3d99;--tint:#ccd9f2;--btn:#dddddd;--btn2:#cccccc;--onmain:#000;--side:#dddddd;--top:#dddddd;--pick:#3366cc;--picktext:#ffffff;--code:#ffffff;--codetext:#000000;--codeedge:#666666;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:3px;--font:Charcoal,Chicago,Geneva,"Lucida Grande",sans-serif;--bold:700;--body:400;--link:400;--big:28px;--bigspace:0;--anim:step;--time:.25s;--ease:steps(5,end);--flip:none;--l1:#6f9bff;--l2:#3366cc;--l3:#16346b}
+[data-theme="android"]{--bg:#fffbfe;--panel:#f3edf7;--panel2:#e7e0ec;--text:#1c1b1f;--text2:#49454f;--dim:#79747e;--edge:#cac4d0;--main:#6750a4;--main2:#4f378b;--tint:#eaddff;--btn:#6750a4;--btn2:#4f378b;--onmain:#fff;--side:#f7f2fa;--top:#f7f2fa;--pick:#e8def8;--picktext:#1d192b;--code:#2b2930;--codetext:#e6e0e9;--codeedge:#211f26;--cmt:#9aa5ad;--str:#b8e08a;--num:#f0b37a;--kw:#8fc4e8;--vr:#e6a2c0;--round:16px;--font:Roboto,"Google Sans",system-ui,sans-serif;--bold:500;--link:500;--anim:rise;--time:.45s;--ease:cubic-bezier(.2,0,0,1);--flip:none;--l1:#cfbcff;--l2:#6750a4;--l3:#2b1a5e}
+[data-theme="terminal"]{--l1:#b6ffc6;--l2:#3ddc6a;--l3:#0a4a1c;--ic:#7dff9a;--fx:grayscale(1) sepia(1) saturate(3) hue-rotate(80deg) brightness(.9)}
+[data-theme="sunset"]{--l1:#ffd0a8;--l2:#ff6b8a;--l3:#7a1e48;--ic:#ffb08a}
+[data-theme="paper"]{--l1:#8a4b14;--l2:#5e3208;--l3:#2a1604;--ic:#5a3a14;--fx:sepia(.7)}
+[data-theme="nord"]{--l1:#b8e0ea;--l2:#88c0d0;--l3:#3b6a80}
+[data-theme="dracula"]{--l1:#e3caff;--l2:#bd93f9;--l3:#5b3a99}
+[data-theme="gruvbox"]{--l1:#ffe08a;--l2:#fabd2f;--l3:#8a4b0a}
+[data-theme="cyber"]{--l1:#6ff3ff;--l2:#ff2a6d;--l3:#2a0a4a}
+[data-theme="modrinth"]{--l1:#7bf0ae;--l2:#1bd96a;--l3:#06532a}
+[data-theme="ghdark"]{--l1:#79b8ff;--l2:#4493f8;--l3:#0b3a7a}
+[data-theme="ghlight"]{--l1:#0969da;--l2:#0550ae;--l3:#01275a}
+[data-theme="macos"]{--l1:#5aa2ff;--l2:#0a6cff;--l3:#0a2f80}
+[data-theme="win11"]{--l1:#4cc2ff;--l2:#0067c0;--l3:#003e92}
+[data-theme="winxp"]{--l1:#6ea0ff;--l2:#2257e0;--l3:#0b2e8a}
+[data-theme="win95"]{--l1:#000080;--l2:#000080;--l3:#000040;--ic:#000;--fx:grayscale(1)}
+[data-theme="win7"]{--l1:#8fd0ff;--l2:#2f7bd8;--l3:#0b3d78}
+[data-theme="ubuntu"]{--l1:#ff9a6c;--l2:#e95420;--l3:#77216f}
+[data-theme="terminal"]{--bg:#050805;--panel:#0a110a;--panel2:#101a10;--text:#7dff9a;--text2:#5fd078;--dim:#3f8f52;--edge:#1c3a22;--main:#7dff9a;--main2:#b6ffc6;--tint:#0f2415;--btn:#7dff9a;--btn2:#b6ffc6;--onmain:#021006;--side:#050805;--top:#050805;--pick:#0f2415;--picktext:#b6ffc6;--code:#000;--codetext:#7dff9a;--codeedge:#1c3a22;--cmt:#3f8f52;--str:#e6ff7a;--num:#ffb86b;--kw:#6fe3ff;--vr:#ff8ad8;--font:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;--round:0px;--anim:typein;--time:.5s;--ease:steps(14,end);--fast:.08s linear;--swap:.2s}
+[data-theme="sunset"]{--bg:#1d1420;--panel:#251a28;--panel2:#2e2132;--text:#fbeee6;--text2:#d9bfc0;--dim:#a88b94;--edge:#43304a;--main:#ff8a5c;--main2:#ffb08a;--tint:#3b2433;--btn:#ff6b6b;--btn2:#ff8a5c;--onmain:#2a0d0d;--side:#1a1119;--top:#1a1119;--pick:#3b2433;--picktext:#ffb08a;--code:#140d17;--codetext:#f6e6e0;--codeedge:#38273d;--cmt:#9a7f8c;--str:#ffcf8a;--num:#ff9e7a;--kw:#ff7fa8;--vr:#c9a2ff;--round:10px;--anim:swoosh;--time:.55s;--ease:cubic-bezier(.16,1,.3,1);--fast:.22s ease;--swap:.5s}
+[data-theme="paper"]{--bg:#f6efdc;--panel:#efe6cf;--panel2:#e6dcc0;--text:#2f2616;--text2:#5a4c33;--dim:#85755a;--edge:#d6c9a8;--main:#8a4b14;--main2:#6b3708;--tint:#ecdcb8;--btn:#8a4b14;--btn2:#6b3708;--onmain:#fff8e8;--side:#f1e8d2;--top:#f1e8d2;--pick:#e6d6af;--picktext:#4a2806;--code:#2b2417;--codetext:#f3e9d0;--codeedge:#1f1a10;--cmt:#9a8a6a;--str:#b8d38a;--num:#f0b37a;--kw:#8fc4d8;--vr:#e6a2c0;--font:Georgia,"Iowan Old Style","Times New Roman",serif;--invf:none;--round:2px;--anim:unfold;--time:.6s;--ease:cubic-bezier(.3,.6,.2,1);--fast:.3s ease;--swap:.5s;--big:44px}
+[data-theme="modrinth"]{--font:"Inter",system-ui,sans-serif;--bold:800;--link:700;--round:12px;--border:0px;--high:64px;--panel:#26292f;--panel2:#34363c;--top:#26292f;--side:#26292f;--edge:#3c3f46;--pick:rgba(27,217,106,.14);--picktext:#1bd96a;--code:#16181c;--codeedge:#16181c;--btn:#1bd96a;--btn2:#4bec8c;--onmain:#000;--anim:rise;--time:.45s}
+</style>
+<style>
+[data-theme="bright"],[data-theme="solarized"]{--l1:#7025cc;--l2:#3a1070;--l3:#050008}
+[data-theme="terminal"] body{background:#050805 repeating-linear-gradient(0deg,rgba(125,255,154,.035) 0 1px,transparent 1px 3px) fixed;text-shadow:0 0 6px rgba(125,255,154,.25)}
+[data-theme="terminal"] *{border-radius:0!important}
+[data-theme="terminal"] .top{height:46px}
+[data-theme="terminal"] .brand{font-weight:700;font-size:16px}
+[data-theme="terminal"] .brand:before{content:"user@vextent:~$";color:var(--dim);font-weight:400;margin-right:4px}
+[data-theme="terminal"] .brand small{display:none}
+[data-theme="terminal"] .btn{background:transparent;border-color:var(--edge);font-weight:400}
+[data-theme="terminal"] .btn.p{background:var(--main);color:#021006;font-weight:700;text-shadow:none}
+[data-theme="terminal"] .btn:hover{background:var(--tint)}
+[data-theme="terminal"] .side a:before{content:"> ";color:var(--dim)}
+[data-theme="terminal"] .side a.on:before{content:"$ ";color:var(--main)}
+[data-theme="terminal"] .side a.on{background:none;color:var(--main2);font-weight:700}
+[data-theme="terminal"] .side .grp:before{content:"# "}
+[data-theme="terminal"] h1:before{content:"# ";color:var(--dim)}
+[data-theme="terminal"] h1:after{content:"\2588";margin-left:8px;animation:caret 1s steps(1) infinite}
+[data-theme="terminal"] h2.sec:before{content:"## ";color:var(--dim)}
+[data-theme="terminal"] h3:before{content:"### ";color:var(--dim)}
+[data-theme="terminal"] .crumb:before{content:"~/docs/"}
+[data-theme="terminal"] .crumb{text-transform:lowercase;letter-spacing:0;font-weight:400}
+[data-theme="terminal"] a{text-decoration:underline}
+[data-theme="terminal"] pre{border:1px solid var(--edge);text-shadow:none}
+[data-theme="terminal"] code{background:var(--tint)}
+[data-theme="terminal"] .note,[data-theme="terminal"] .warn{background:transparent}
+[data-theme="sunset"] body{background:linear-gradient(160deg,#2a1330 0%,#4a1e3d 45%,#7a2e3a 80%,#b4533a 100%) fixed}
+[data-theme="sunset"] .top{background:rgba(26,17,25,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.1)}
+[data-theme="sunset"] .brand{background:linear-gradient(90deg,#ffb08a,#ff6b9d);-webkit-background-clip:text;background-clip:text;color:transparent}
+[data-theme="sunset"] .brand img{filter:drop-shadow(0 0 0 transparent)}
+[data-theme="sunset"] .btn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);border-radius:999px}
+[data-theme="sunset"] .btn.p{background:linear-gradient(90deg,#ff8a5c,#ff5d8f);border:0;color:#2a0d0d}
+[data-theme="sunset"] .search input{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);border-radius:999px;padding-left:16px}
+[data-theme="sunset"] .side{background:rgba(26,17,25,.45);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-right:1px solid rgba(255,255,255,.08)}
+[data-theme="sunset"] .side a{border-radius:999px}
+[data-theme="sunset"] .content{background:rgba(26,17,25,.38);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+[data-theme="sunset"] h1{background:linear-gradient(90deg,#ffd0a8,#ff7aa8);-webkit-background-clip:text;background-clip:text;color:transparent}
+[data-theme="sunset"] .dl .row,[data-theme="sunset"] .pager a{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);border-radius:16px;margin-bottom:10px;padding-left:16px;padding-right:16px}
+[data-theme="sunset"] .dl{border-top:0}
+[data-theme="sunset"] pre{border-radius:14px;border-color:rgba(255,255,255,.08)}
+[data-theme="sunset"] .menu,[data-theme="sunset"] .results{background:#2a1a2c;border-color:rgba(255,255,255,.12);border-radius:16px}
+[data-theme="paper"] body{background:#f6efdc radial-gradient(circle at 20% 10%,rgba(255,255,255,.55),transparent 55%) fixed;font-size:18px;line-height:1.75}
+[data-theme="paper"] .top{background:#f1e8d2;border-bottom:3px double #c9b98f;height:68px}
+[data-theme="paper"] .brand{font-style:italic;font-weight:700;font-size:24px;letter-spacing:0}
+[data-theme="paper"] .brand small{font-style:italic;font-weight:400;font-size:14px}
+[data-theme="paper"] .btn{font-family:Georgia,serif;font-weight:600;background:#fbf5e4;border:1px solid #bfae80}
+[data-theme="paper"] .btn.p{background:#8a4b14;color:#fff8e8;border-color:#6b3708}
+[data-theme="paper"] .search input{font-family:Georgia,serif;background:#fbf5e4;border:1px solid #bfae80;font-weight:400}
+[data-theme="paper"] .side{background:#f1e8d2;border-right:1px solid #c9b98f}
+[data-theme="paper"] .side a{font-weight:400;font-size:15.5px}
+[data-theme="paper"] .side a.on{font-weight:700;font-style:italic;background:#e6d6af}
+[data-theme="paper"] .side .grp,[data-theme="paper"] .crumb,[data-theme="paper"] .toc b,[data-theme="paper"] th{font-family:Georgia,serif;font-variant:small-caps;text-transform:none;letter-spacing:.06em;font-size:14px}
+[data-theme="paper"] .content{background:#fbf6e6;box-shadow:0 0 0 1px #d6c9a8,0 10px 30px rgba(90,70,30,.15);margin:28px 0;padding:56px 64px 90px;max-width:820px}
+[data-theme="paper"] h1{font-style:italic;font-weight:700}
+[data-theme="paper"] h2.sec{border-top:0;text-align:center;font-style:italic}
+[data-theme="paper"] h2.sec:after{content:"\2766";display:block;color:#b8a578;font-size:20px;margin-top:6px}
+[data-theme="paper"] .intro:first-letter{font-size:3.2em;float:left;line-height:.9;padding:6px 8px 0 0;color:#8a4b14;font-weight:700}
+[data-theme="paper"] code{background:#efe3c3;color:#4a2806}
+[data-theme="paper"] b,[data-theme="paper"] strong{font-weight:700}
+[data-theme="paper"] .note,[data-theme="paper"] .warn{background:#f4ead0;border-color:#d6c9a8;font-style:italic}
+[data-theme="paper"] .dl .row{background:transparent}
+[data-theme="terminal"] ::-webkit-scrollbar-thumb{background:var(--main);border-radius:0;border-width:4px}
+[data-theme="cyber"] ::-webkit-scrollbar-thumb{background:linear-gradient(var(--btn),var(--main));border-radius:0;border-width:4px}
+[data-theme="sunset"] ::-webkit-scrollbar-thumb{background:linear-gradient(#ff8a5c,#ff5d8f);border-width:4px;border-radius:99px}
+[data-theme="paper"] ::-webkit-scrollbar-thumb{background:#bfae80;border-radius:0}
+[data-theme="cyber"] body{background:#0b0716 linear-gradient(rgba(255,42,109,.06) 1px,transparent 1px) 0 0/100% 4px fixed}
+[data-theme="cyber"] .btn{border:1px solid var(--main);color:var(--main)}
+[data-theme="cyber"] .btn.p{background:var(--btn);border-color:var(--btn);color:#fff;box-shadow:0 0 14px rgba(255,42,109,.55)}
+[data-theme="cyber"] h1{text-shadow:2px 0 #ff2a6d,-2px 0 #05d9e8;letter-spacing:.02em}
+[data-theme="cyber"] .side a.on{border-left:3px solid var(--btn);background:linear-gradient(90deg,rgba(255,42,109,.2),transparent)}
+[data-theme="cyber"] pre{box-shadow:0 0 0 1px var(--edge),0 0 22px rgba(5,217,232,.12)}
+[data-theme="cyber"] .top{border-bottom:1px solid var(--btn);box-shadow:0 2px 18px rgba(255,42,109,.3)}
+[data-theme="dracula"] h1{color:#ff79c6}
+[data-theme="gruvbox"] h1,[data-theme="gruvbox"] h2.sec{color:#fabd2f}
+[data-theme="nord"] .side a.on{box-shadow:inset 3px 0 0 #88c0d0}
+[data-theme="solarized"] h1,[data-theme="solarized"] h2.sec,[data-theme="solarized"] h3{color:#073642}
+[data-theme="ocean"] .side a.on,[data-theme="forest"] .side a.on{box-shadow:inset 3px 0 0 var(--main)}
+[data-theme="rose"] .btn{border-radius:999px}
+[data-theme="mono"] *{border-radius:0!important}
+[data-theme="mono"] .btn.p{background:#111;color:#fff}
+[data-theme="mono"] h1{text-transform:uppercase;letter-spacing:.02em}
+[data-theme="contrast"] a,[data-theme="lightcontrast"] a{text-decoration:underline}
+[data-theme="contrast"] .side a.on,[data-theme="lightcontrast"] .side a.on{outline:2px solid var(--main);outline-offset:-2px}
+[data-theme="contrast"] :focus-visible,[data-theme="lightcontrast"] :focus-visible{outline:3px solid #00e5ff;outline-offset:2px}
+</style>
+<style>
+[data-theme="ghdark"] h1,[data-theme="ghlight"] h1{padding-bottom:.3em;border-bottom:1px solid var(--edge)}
+[data-theme="ghdark"] .btn.p,[data-theme="ghlight"] .btn.p{border-color:rgba(240,246,252,.1)}
+[data-theme="modrinth"] .dl .row,[data-theme="modrinth"] .pager a{background:var(--panel);border-radius:var(--round);margin-bottom:10px;border-color:transparent;padding-left:16px;padding-right:16px}
+[data-theme="modrinth"] .dl{border-top:0}
+[data-theme="modrinth"] .btn.p{box-shadow:0 0 0 0 rgba(27,217,106,.5)}
+[data-theme="modrinth"] .btn.p:hover{box-shadow:0 0 18px 2px rgba(27,217,106,.35)}
+[data-theme="modrinth"] .btn,[data-theme="modrinth"] .search input{border-radius:12px}
+[data-theme="modrinth"] body{background:#16181c}
+[data-theme="modrinth"] .top{box-shadow:0 2px 8px rgba(0,0,0,.35);border:0}
+[data-theme="modrinth"] .brand{font-weight:800}
+[data-theme="modrinth"] .btn{background:var(--panel2);border:0;border-radius:12px;font-weight:700}
+[data-theme="modrinth"] .btn:hover{filter:brightness(1.15);background:var(--panel2)}
+[data-theme="modrinth"] .btn.p{background:#1bd96a;color:#000}
+[data-theme="modrinth"] .btn.p:hover{background:#4bec8c;filter:none}
+[data-theme="modrinth"] .search input{background:var(--panel2);border:0;border-radius:12px}
+[data-theme="modrinth"] .results,[data-theme="modrinth"] .menu{background:var(--panel);border:0;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+[data-theme="modrinth"] pre,[data-theme="modrinth"] code{border-radius:12px}
+[data-theme="modrinth"] code{background:#16181c;color:#ecf9fb}
+[data-theme="modrinth"] .side a{border-radius:10px;font-weight:700}
+[data-theme="modrinth"] .side a.on{font-weight:800}
+[data-theme="modrinth"] .note,[data-theme="modrinth"] .warn{border:0;border-left:4px solid var(--ok);border-radius:12px;background:#1d1f23}
+[data-theme="modrinth"] .warn{border-left-color:var(--warn)}
+[data-theme="modrinth"] th{background:#1d1f23}
+[data-theme="modrinth"] .pager a{background:#1d1f23;border-radius:16px}
+[data-theme="modrinth"] .dl .row{background:#1d1f23;border-radius:16px;margin-bottom:10px;padding:14px 18px;border:0}
+@media (min-width:901px){
+[data-theme="modrinth"] .wrap{max-width:1360px;gap:16px;padding:16px}
+[data-theme="modrinth"] .side{top:80px;height:calc(100vh - 96px);border:0;border-radius:16px;padding:16px 12px}
+[data-theme="modrinth"] .content{background:#26292f;border-radius:16px;padding:36px 40px 70px;max-width:none}
+[data-theme="modrinth"] .toc{top:80px;height:auto;max-height:calc(100vh - 96px);background:#26292f;border-radius:16px;padding:20px 16px;width:240px}
+}
+[data-theme="ghdark"],[data-theme="ghlight"]{--font:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;--bold:600;--body:400;--link:500;--round:6px;--big:32px;--bigspace:0;--high:64px;--anim:ghin;--time:.2s;--ease:ease-out}
+[data-theme="ghdark"] body,[data-theme="ghlight"] body{font-size:16px;line-height:1.5}
+[data-theme="ghdark"] .top,[data-theme="ghlight"] .top{height:64px;padding:0 32px}
+[data-theme="ghdark"] .brand,[data-theme="ghlight"] .brand{font-size:16px;font-weight:600}
+[data-theme="ghdark"] .brand small,[data-theme="ghlight"] .brand small{font-size:14px;color:var(--dim);font-weight:400}
+[data-theme="ghdark"] .brand small:before,[data-theme="ghlight"] .brand small:before{content:"/ ";margin:0 2px}
+[data-theme="ghdark"] .btn,[data-theme="ghlight"] .btn{font-weight:500;font-size:14px;height:32px;background:var(--panel);border-color:var(--edge)}
+[data-theme="ghdark"] .btn:hover,[data-theme="ghlight"] .btn:hover{background:var(--panel2)}
+[data-theme="ghdark"] .btn.p,[data-theme="ghlight"] .btn.p{color:#fff;font-weight:600}
+[data-theme="ghdark"] .btn.lg,[data-theme="ghlight"] .btn.lg{height:40px;font-size:14px}
+[data-theme="ghdark"] .search input,[data-theme="ghlight"] .search input{height:32px;background:var(--bg);font-weight:400;font-size:14px}
+[data-theme="ghdark"] .side,[data-theme="ghlight"] .side{border-right:1px solid var(--edge);background:var(--bg)}
+[data-theme="ghdark"] .side a,[data-theme="ghlight"] .side a{font-size:14px;font-weight:400;padding:6px 8px;border-radius:6px;color:var(--text)}
+[data-theme="ghdark"] .side a.on,[data-theme="ghlight"] .side a.on{background:var(--panel2);font-weight:600;color:var(--text);box-shadow:inset 3px 0 0 #f78166}
+[data-theme="ghdark"] .side .grp,[data-theme="ghlight"] .side .grp{font:600 12px var(--font);letter-spacing:0;text-transform:none;color:var(--dim)}
+[data-theme="ghdark"] .crumb,[data-theme="ghlight"] .crumb{font:400 14px var(--font);letter-spacing:0;text-transform:none;color:var(--dim)}
+[data-theme="ghdark"] h2.sec,[data-theme="ghlight"] h2.sec,[data-theme="ghdark"] h3,[data-theme="ghlight"] h3{font-weight:600;padding-bottom:.3em;border-bottom:1px solid var(--edge);border-top:0;font-size:24px}
+[data-theme="ghdark"] h3,[data-theme="ghlight"] h3{font-size:20px;border:0;padding:0}
+[data-theme="ghdark"] .intro,[data-theme="ghlight"] .intro{font-size:16px;color:var(--text)}
+[data-theme="ghdark"] b,[data-theme="ghdark"] strong,[data-theme="ghlight"] b,[data-theme="ghlight"] strong{font-weight:600}
+[data-theme="ghdark"] code,[data-theme="ghlight"] code{background:rgba(110,118,129,.4);font-size:85%;padding:.2em .4em;border-radius:6px}
+[data-theme="ghlight"] code{background:rgba(129,139,152,.12)}
+[data-theme="ghdark"] pre,[data-theme="ghlight"] pre{background:var(--panel);color:var(--text);border:0;border-radius:6px;font-size:85%}
+[data-theme="ghdark"] pre code,[data-theme="ghlight"] pre code{background:none}
+[data-theme="ghdark"] .note,[data-theme="ghdark"] .warn,[data-theme="ghlight"] .note,[data-theme="ghlight"] .warn{border:0;border-left:.25em solid var(--ok);border-radius:0;background:none;padding:0 1em}
+[data-theme="ghdark"] .warn,[data-theme="ghlight"] .warn{border-left-color:var(--warn)}
+[data-theme="ghdark"] th,[data-theme="ghlight"] th{font:600 14px var(--font);text-transform:none;letter-spacing:0;color:var(--text);background:var(--panel)}
+[data-theme="ghdark"] td,[data-theme="ghdark"] th,[data-theme="ghlight"] td,[data-theme="ghlight"] th{border:1px solid var(--edge)}
+[data-theme="ghdark"] .dl .row,[data-theme="ghlight"] .dl .row{border:1px solid var(--edge);border-radius:6px;margin-top:-1px;border-radius:0;padding:14px 16px;background:var(--bg)}
+[data-theme="ghdark"] .dl,[data-theme="ghlight"] .dl{border:0;margin-top:14px}
+[data-theme="ghdark"] .dl .row:first-child,[data-theme="ghlight"] .dl .row:first-child{border-radius:6px 6px 0 0}
+[data-theme="ghdark"] .dl .row:last-child,[data-theme="ghlight"] .dl .row:last-child{border-radius:0 0 6px 6px}
+[data-theme="modrinth"] ::-webkit-scrollbar-thumb{background:#1bd96a;border-width:4px;border-radius:99px}
+[data-theme="discord"] .btn{border:0;background:#4e5058;color:#fff;border-radius:3px;font-weight:500}
+[data-theme="discord"] .btn.p{background:#5865f2}
+[data-theme="discord"] .side a{border-radius:4px;font-weight:500}
+[data-theme="discord"] .side a.on{background:#404249;color:#fff}
+[data-theme="discord"] .side .grp{font-size:12px;letter-spacing:.02em}
+[data-theme="discord"] .top{box-shadow:0 1px 0 rgba(0,0,0,.2);border:0}
+[data-theme="discord"] .search input{background:#1e1f22;border:0;border-radius:4px}
+[data-theme="spotify"] .btn{border-radius:999px;background:transparent;border:1px solid #727272;font-weight:700}
+[data-theme="spotify"] .btn.p{background:#1ed760;border-color:#1ed760;color:#000}
+[data-theme="spotify"] .btn.p:hover{transform:scale(1.04)}
+[data-theme="spotify"] .search input{border-radius:999px;background:#242424;border-color:transparent}
+[data-theme="spotify"] .side{background:#000}
+[data-theme="spotify"] .side a.on{background:#282828}
+[data-theme="spotify"] .content{background:linear-gradient(#222 0,#121212 340px)}
+[data-theme="spotify"] .dl .row,[data-theme="spotify"] .pager a{background:#181818;border:0;border-radius:8px;margin-bottom:8px;padding-left:16px;padding-right:16px}
+[data-theme="spotify"] .dl{border:0}
+[data-theme="spotify"] h1{font-size:56px;letter-spacing:-.04em}
+[data-theme="notion"] h1{font-size:40px;border:0}
+[data-theme="notion"] h2.sec{border-top:0;padding-top:8px}
+[data-theme="notion"] .btn{background:#fff;border-color:rgba(55,53,47,.16);font-weight:500;box-shadow:rgba(15,15,15,.05) 0 1px 2px}
+[data-theme="notion"] .btn.p{background:#2383e2;border-color:#2383e2;color:#fff}
+[data-theme="notion"] .side a.on{font-weight:600;background:rgba(55,53,47,.08)}
+[data-theme="notion"] .side a:hover{background:rgba(55,53,47,.06)}
+[data-theme="notion"] .note,[data-theme="notion"] .warn{background:#f1f1ef;border:0;border-radius:4px;border-left:0}
+[data-theme="notion"] code{background:rgba(135,131,120,.15);color:#eb5757}
+[data-theme="notion"] pre code{color:inherit}
+[data-theme="notion"] .content{padding-top:64px}
+[data-theme="hn"] body{font-size:14px;background:#f6f6ef}
+[data-theme="hn"] .top{color:#000;height:36px;border:0}
+[data-theme="hn"] .brand{color:#000;font-size:14px;font-weight:700}
+[data-theme="hn"] .brand small{color:#000;font-weight:400;font-size:12px}
+[data-theme="hn"] .wrap{background:#f6f6ef;max-width:1100px}
+[data-theme="hn"] .btn{background:#f6f6ef;border-color:#000;color:#000;height:26px;font-size:12px}
+[data-theme="hn"] .btn.p{background:#ff6600;border-color:#000}
+[data-theme="hn"] .search input{height:26px;font-size:12px;font-weight:400;border-color:#000;background:#fff}
+[data-theme="hn"] a{color:#000;text-decoration:none}
+[data-theme="hn"] a:hover{text-decoration:underline}
+[data-theme="hn"] .side{background:#f6f6ef;border-color:#d9d9cc}
+[data-theme="hn"] .side a{font-size:13px;padding:2px 8px}
+[data-theme="hn"] .side a.on{background:#ff6600;color:#000;font-weight:400}
+[data-theme="hn"] h1,[data-theme="hn"] h2.sec,[data-theme="hn"] h3{color:#000;font-weight:700}
+[data-theme="hn"] .content{font-size:14px;line-height:1.5}
+[data-theme="hn"] .dl .row{background:transparent}
+[data-theme="steam"] body{background:#1b2838 linear-gradient(#1b2838,#0f1923) fixed}
+[data-theme="steam"] .top{background:#171a21;border-bottom:1px solid #000}
+[data-theme="steam"] .btn{background:linear-gradient(135deg,#3a4b5e,#2a3a4c);border:0;color:#c7d5e0;font-weight:400;border-radius:2px}
+[data-theme="steam"] .btn.p{background:linear-gradient(90deg,#75b022,#588a1b);color:#fff}
+[data-theme="steam"] .search input{background:#316282;border:0;color:#fff;border-radius:2px}
+[data-theme="steam"] .side{background:#171a21}
+[data-theme="steam"] .side a.on{background:linear-gradient(90deg,#2a475e,transparent);color:#fff}
+[data-theme="steam"] h1,[data-theme="steam"] h2.sec{color:#fff;text-transform:uppercase;letter-spacing:.03em;font-weight:400}
+[data-theme="steam"] .dl .row,[data-theme="steam"] .pager a{background:rgba(0,0,0,.25);border:0;border-radius:2px;margin-bottom:6px;padding-left:14px;padding-right:14px}
+[data-theme="steam"] .dl{border:0}
+[data-theme="stackoverflow"] .top{border-top:3px solid #f48024;background:#f8f9f9;box-shadow:0 1px 3px rgba(0,0,0,.1);border-bottom:1px solid #d6d9dc}
+[data-theme="stackoverflow"] .btn{background:#e1ecf4;color:#39739d;border-color:#7aa7c7;font-weight:400;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+[data-theme="stackoverflow"] .btn.p{background:#0a95ff;color:#fff;border-color:#0a95ff}
+[data-theme="stackoverflow"] .side{background:#fff}
+[data-theme="stackoverflow"] .side a{border-radius:0;font-weight:400;font-size:13px;color:#525960}
+[data-theme="stackoverflow"] .side a.on{background:#f1f2f3;color:#0c0d0e;font-weight:700;box-shadow:inset -3px 0 0 #f48024}
+[data-theme="stackoverflow"] h1,[data-theme="stackoverflow"] h2.sec{font-weight:400;color:#232629}
+[data-theme="stackoverflow"] h2.sec{border-bottom:0}
+[data-theme="stackoverflow"] pre{background:#f6f6f6;color:#232629;border:0}
+[data-theme="stackoverflow"] code{background:#eff0f1}
+[data-theme="stackoverflow"] pre code{background:none}
+</style>
+<style>
+[data-theme="macos"] body{background:linear-gradient(135deg,#6f86d6 0%,#9a74d1 45%,#e6a1c8 100%) fixed;padding:26px}
+[data-theme="macos"] .app{background:var(--bg);border-radius:12px;border:1px solid rgba(0,0,0,.28);box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 .5px rgba(255,255,255,.5) inset;overflow:clip;max-width:1500px;margin:0 auto}
+[data-theme="macos"] .chrome{display:flex;align-items:center;height:32px;padding:0 14px;background:linear-gradient(#ececef,#dcdce1);border-bottom:1px solid #c4c4cb;position:relative}
+[data-theme="macos"] .chrome .mac{display:flex;gap:8px}
+[data-theme="macos"] .chrome .mac i{width:12px;height:12px;border-radius:50%;border:.5px solid rgba(0,0,0,.2)}
+[data-theme="macos"] .chrome .mac i:nth-child(1){background:#ff5f57}[data-theme="macos"] .chrome .mac i:nth-child(2){background:#febc2e}[data-theme="macos"] .chrome .mac i:nth-child(3){background:#28c840}
+[data-theme="macos"] .chrome .ttl{position:absolute;left:0;right:0;text-align:center;font:600 13px var(--font);color:#4a4a4f;pointer-events:none}
+[data-theme="macos"] .win,[data-theme="macos"] .xp{display:none}
+[data-theme="macos"] .top{height:60px;background:linear-gradient(#f4f4f6,#e9e9ed)}
+[data-theme="macos"] .side{backdrop-filter:blur(24px) saturate(1.6);background:var(--side)}
+[data-theme="macos"] .side a.on{box-shadow:0 1px 2px rgba(0,60,200,.4)}
+[data-theme="macos"] .btn{background:linear-gradient(#fff,#f3f3f5);border-color:#cfcfd4;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+[data-theme="macos"] .btn.p{background:linear-gradient(#3b8cff,#0a6cff);border-color:#0a5ad6;color:#fff}
+[data-theme="macos"] .search input{background:#fff;border-color:#cfcfd4;border-radius:7px}
+[data-theme="macos"] .note,[data-theme="macos"] .warn{border-radius:10px}
+[data-theme="macos"] pre{border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+[data-theme="win11"] body{background:radial-gradient(1200px 700px at 20% 10%,#7bb4f5 0%,transparent 60%),radial-gradient(900px 600px at 90% 90%,#2f5cc9 0%,transparent 60%),#1b3a8a fixed;padding:22px}
+[data-theme="win11"] .app{background:var(--bg);border-radius:8px;border:1px solid rgba(0,0,0,.35);box-shadow:0 24px 64px rgba(0,0,0,.45);overflow:clip;max-width:1500px;margin:0 auto}
+[data-theme="win11"] .chrome{display:flex;align-items:center;height:36px;background:#eaeaea;padding-left:12px}
+[data-theme="win11"] .chrome .mac,[data-theme="win11"] .chrome .xp{display:none}
+[data-theme="win11"] .chrome .ttl{flex:1;font:400 12px var(--font);color:#1a1a1a;display:flex;align-items:center;gap:8px}
+[data-theme="win11"] .chrome .ttl:before{content:"";width:14px;height:14px;background:var(--icon) center/contain no-repeat}
+[data-theme="win11"] .chrome .win{display:flex;height:100%}
+[data-theme="win11"] .chrome .win i{width:46px;display:grid;place-items:center;font:400 13px "Segoe UI Symbol","Segoe UI",sans-serif;font-style:normal;color:#1a1a1a}
+[data-theme="win11"] .chrome .win i:hover{background:rgba(0,0,0,.07)}
+[data-theme="win11"] .chrome .win i:last-child:hover{background:#c42b1c;color:#fff}
+[data-theme="win11"] .top{background:#f3f3f3}
+[data-theme="win11"] .side a{position:relative}
+[data-theme="win11"] .side a.on{background:#e6e6e6}
+[data-theme="win11"] .side a.on:before{content:"";position:absolute;left:0;top:25%;height:50%;width:3px;border-radius:2px;background:var(--main)}
+[data-theme="win11"] .btn{background:#fdfdfd;border-color:#e0e0e0;border-bottom-color:#c8c8c8}
+[data-theme="win11"] .btn.p{background:#0067c0;border-color:#0067c0;color:#fff}
+[data-theme="win11"] .search input{border-bottom:2px solid #8a8a8a;background:#fdfdfd}
+[data-theme="win11"] .search input:focus{border-bottom-color:var(--main)}
+[data-theme="winxp"] body{background:radial-gradient(ellipse at 50% 120%,#58a028 0%,#3a7d14 18%,transparent 19%),linear-gradient(#245edb 0%,#5b9cf0 55%,#a8cdf5 100%) fixed;padding:20px}
+[data-theme="winxp"] .app{background:#ece9d8;border:3px solid #0831d9;border-top:0;border-radius:8px 8px 0 0;box-shadow:3px 6px 14px rgba(0,0,0,.5);overflow:clip;max-width:1500px;margin:0 auto}
+[data-theme="winxp"] .chrome{display:flex;align-items:center;height:32px;padding:0 4px 0 8px;background:linear-gradient(#0997ff 0%,#0053ee 8%,#0050ee 40%,#06f 88%,#06f 93%,#005bff 95%,#003dd7 96%,#003dd7 100%);border-radius:7px 7px 0 0}
+[data-theme="winxp"] .chrome .mac,[data-theme="winxp"] .chrome .win{display:none}
+[data-theme="winxp"] .chrome .ttl{flex:1;font:700 13px Trebuchet MS,Tahoma,sans-serif;color:#fff;text-shadow:1px 1px #0f1089;display:flex;align-items:center;gap:6px}
+[data-theme="winxp"] .chrome .ttl:before{content:"";width:16px;height:16px;background:var(--icon) center/contain no-repeat}
+[data-theme="winxp"] .chrome .xp{display:flex;gap:2px}
+[data-theme="winxp"] .chrome .xp i{width:22px;height:22px;border:1px solid #fff;border-radius:3px;background:linear-gradient(135deg,#6ea0ff,#2257e0);color:#fff;display:grid;place-items:center;font:700 12px Tahoma,sans-serif;font-style:normal}
+[data-theme="winxp"] .chrome .xp i:last-child{background:linear-gradient(135deg,#f0a591,#d4381a)}
+[data-theme="winxp"] .top{background:linear-gradient(#fdfdfa,#ece9d8);border-bottom:1px solid #aca899}
+[data-theme="winxp"] .brand{font-family:Trebuchet MS,Tahoma,sans-serif}
+[data-theme="winxp"] .side{background:linear-gradient(180deg,#7ba2e7,#6375d6);border-right:1px solid #aca899;color:#fff}
+[data-theme="winxp"] .side .grp{color:#fff;background:linear-gradient(90deg,#fff,#c6d3f7);color:#215dc6;margin:14px 0 4px;padding:3px 8px;border-radius:3px 3px 0 0;font-weight:700;letter-spacing:.04em}
+[data-theme="winxp"] .side a{color:#fff;font-weight:400}
+[data-theme="winxp"] .side a:hover{background:rgba(255,255,255,.2);text-decoration:underline}
+[data-theme="winxp"] .side a.on{background:#316ac5;color:#fff}
+[data-theme="winxp"] .btn{background:linear-gradient(#fff,#ecebe5 86%,#d8d0c4);border:1px solid #003c74;border-radius:3px;font-weight:400;color:#000}
+[data-theme="winxp"] .btn:hover{box-shadow:inset 0 0 0 2px #f8b330}
+[data-theme="winxp"] .btn.p{background:linear-gradient(#7fb64a,#3d8a1b);border-color:#1f5a0a;color:#fff;font-weight:700}
+[data-theme="winxp"] .search input{border:1px solid #7f9db9;border-radius:0;background:#fff}
+[data-theme="winxp"] .content{background:#fff}
+[data-theme="winxp"] .toc{background:#fff}
+[data-theme="winxp"] h1,[data-theme="winxp"] h2.sec,[data-theme="winxp"] h3{font-family:Trebuchet MS,Tahoma,sans-serif;color:#215dc6}
+[data-theme="winxp"] .dl .row{background:#fff}
+[data-theme="winxp"] pre{border:2px inset #7f9db9;border-radius:0}
+[data-theme="win95"] body{background:#008080 fixed;padding:20px;font-size:14px;line-height:1.5}
+[data-theme="win95"] .app{background:#c0c0c0;max-width:1500px;margin:0 auto;padding:3px;box-shadow:inset -1px -1px #000,inset 1px 1px #dfdfdf,inset -2px -2px #808080,inset 2px 2px #fff,4px 4px 0 rgba(0,0,0,.4)}
+[data-theme="win95"] .chrome{display:flex;align-items:center;height:22px;padding:0 2px 0 4px;background:linear-gradient(90deg,#000080,#1084d0);margin-bottom:3px}
+[data-theme="win95"] .chrome .mac,[data-theme="win95"] .chrome .win{display:none}
+[data-theme="win95"] .chrome .ttl{flex:1;font:700 13px var(--font);color:#fff;display:flex;align-items:center;gap:4px}
+[data-theme="win95"] .chrome .ttl:before{content:"";width:16px;height:16px;background:var(--icon) center/contain no-repeat}
+[data-theme="win95"] .chrome .xp{display:flex;gap:2px}
+[data-theme="win95"] .chrome .xp i{width:16px;height:14px;background:#c0c0c0;color:#000;font:700 11px/12px Arial,sans-serif;font-style:normal;text-align:center;box-shadow:inset -1px -1px #000,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #dfdfdf}
+[data-theme="win95"] .top{border:0;height:44px;background:#c0c0c0}
+[data-theme="win95"] .brand{font-size:16px}
+[data-theme="win95"] .brand small{display:none}
+[data-theme="win95"] .btn{background:#c0c0c0;border:0;font-weight:400;height:28px;box-shadow:inset -1px -1px #000,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #dfdfdf}
+[data-theme="win95"] .btn:hover{background:#c0c0c0}
+[data-theme="win95"] .btn:active{box-shadow:inset 1px 1px #000,inset -1px -1px #fff,inset 2px 2px #808080,inset -2px -2px #dfdfdf;padding-top:2px}
+[data-theme="win95"] .btn.p{font-weight:700;outline:1px solid #000;outline-offset:-1px;color:#000}
+[data-theme="win95"] .search input{height:26px;border:0;background:#fff;font-weight:400;box-shadow:inset 1px 1px #808080,inset -1px -1px #fff,inset 2px 2px #000,inset -2px -2px #dfdfdf}
+[data-theme="win95"] .results,[data-theme="win95"] .menu{background:#c0c0c0;border:0;box-shadow:inset -1px -1px #000,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #dfdfdf;padding:3px}
+[data-theme="win95"] .menu button:hover,[data-theme="win95"] .results a:hover,[data-theme="win95"] .results a.sel{background:#000080;color:#fff}
+[data-theme="win95"] .wrap{background:#fff;box-shadow:inset 1px 1px #808080,inset -1px -1px #fff,inset 2px 2px #000,inset -2px -2px #dfdfdf;padding:2px}
+[data-theme="win95"] .side{border-right:1px solid #808080;background:#fff}
+[data-theme="win95"] .side a{border-radius:0;padding:3px 8px;font-size:14px;color:#000}
+[data-theme="win95"] .side a:hover{background:#d4d0c8}
+[data-theme="win95"] .side a.on{background:#000080;color:#fff;font-weight:400;outline:1px dotted #ff0;outline-offset:-2px}
+[data-theme="win95"] .side .grp,[data-theme="win95"] .crumb,[data-theme="win95"] .toc b,[data-theme="win95"] th{font:700 12px var(--font);letter-spacing:0;text-transform:none;color:#000}
+[data-theme="win95"] h1,[data-theme="win95"] h2.sec,[data-theme="win95"] h3{font-family:var(--font);color:#000080}
+[data-theme="win95"] code{background:#dfdfdf;border-radius:0}
+[data-theme="win95"] pre{border:0;border-radius:0;box-shadow:inset 1px 1px #808080,inset -1px -1px #fff}
+[data-theme="win95"] .note,[data-theme="win95"] .warn{border-radius:0;background:#ffffe1;border:1px solid #000;border-left-width:1px}
+[data-theme="win95"] .dl .row,[data-theme="win95"] .pager a{background:#c0c0c0;border:0;margin-bottom:6px;padding-left:12px;padding-right:12px;box-shadow:inset -1px -1px #000,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #dfdfdf}
+[data-theme="win95"] .dl{border:0}
+[data-theme="win95"] .toc a{border-color:#808080}
+[data-theme="win95"] a{text-decoration:underline;color:#0000ee}
+[data-theme="win95"] .btn,[data-theme="win95"] .side a,[data-theme="win95"] .brand,[data-theme="win95"] .pager a,[data-theme="win95"] .toc a{text-decoration:none}
+[data-theme="win7"] body{background:radial-gradient(900px 500px at 70% 15%,#8fd0ff 0%,transparent 60%),linear-gradient(160deg,#1b6fb5 0%,#0b3d78 60%,#07274f 100%) fixed;padding:24px}
+[data-theme="win7"] .app{background:rgba(160,196,236,.78);border-radius:9px;border:1px solid #1d3a63;box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 18px 56px rgba(0,0,0,.55);padding:0 7px 7px;max-width:1500px;margin:0 auto}
+[data-theme="win7"] .chrome{display:flex;align-items:center;height:30px;padding-left:2px}
+[data-theme="win7"] .chrome .mac,[data-theme="win7"] .chrome .xp{display:none}
+[data-theme="win7"] .chrome .ttl{flex:1;font:400 13px var(--font);color:#0b1b33;text-shadow:0 0 8px #fff,0 0 8px #fff,0 0 3px #fff;display:flex;align-items:center;gap:6px}
+[data-theme="win7"] .chrome .ttl:before{content:"";width:16px;height:16px;background:var(--icon) center/contain no-repeat}
+[data-theme="win7"] .chrome .win{display:flex;gap:1px;align-self:flex-start;margin-top:-1px}
+[data-theme="win7"] .chrome .win i{width:28px;height:19px;display:grid;place-items:center;font:700 11px Arial,sans-serif;font-style:normal;color:#243a5e;background:linear-gradient(#f4f8fd 0%,#cfdcf0 48%,#b3c6e3 52%,#d3e1f5 100%);border:1px solid #5a7399;border-top:0}
+[data-theme="win7"] .chrome .win i:first-child{border-bottom-left-radius:5px}
+[data-theme="win7"] .chrome .win i:last-child{width:46px;color:#fff;border-bottom-right-radius:5px;background:linear-gradient(#e8a29a 0%,#d0584b 48%,#b52d1f 52%,#d9604e 100%);border-color:#6d1e16}
+[data-theme="win7"] .top{background:linear-gradient(#f8fbfe,#e1ebf8);border:1px solid #8aa4c8;border-bottom-color:#b6c7e0;height:50px}
+[data-theme="win7"] .btn{background:linear-gradient(#fbfbfb 0%,#eaeaea 48%,#dcdcdc 52%,#d0d0d0 100%);border:1px solid #707070;font-weight:400;color:#111;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75)}
+[data-theme="win7"] .btn:hover{background:linear-gradient(#fdfeff 0%,#eaf6fd 48%,#bee6fd 52%,#a7d9f5 100%);border-color:#3c7fb1}
+[data-theme="win7"] .btn.p{background:linear-gradient(#6fb2f2 0%,#3c8fe0 48%,#1f6fc9 52%,#3f95e6 100%);border-color:#1b4f93;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,.3)}
+[data-theme="win7"] .search input{border:1px solid #8aa4c8;background:#fff;font-weight:400;border-radius:2px;box-shadow:inset 0 1px 2px rgba(0,0,0,.15)}
+[data-theme="win7"] .wrap{background:#fff;border:1px solid #8aa4c8;border-top:0}
+[data-theme="win7"] .side{background:linear-gradient(90deg,#f6f9fd,#e8f0fa);border-right:1px solid #c3d2e8}
+[data-theme="win7"] .side a{border:1px solid transparent;font-weight:400;border-radius:3px;color:#1e3a66}
+[data-theme="win7"] .side a:hover{background:linear-gradient(#fcfdff,#e8f2fd);border-color:#c9dcf5}
+[data-theme="win7"] .side a.on{background:linear-gradient(#e4f0fd,#cfe3fa);border-color:#9bbbe6;font-weight:400;color:#0f2f66}
+[data-theme="win7"] h1{font-weight:400;color:#1e3a8a}
+[data-theme="win7"] h2.sec,[data-theme="win7"] h3{font-weight:400;color:#1e3a8a}
+[data-theme="win7"] pre{border-radius:3px}
+[data-theme="win7"] .dl .row,[data-theme="win7"] .pager a{background:linear-gradient(#fff,#f3f7fc);border:1px solid #c3d2e8;border-radius:3px;margin-bottom:8px;padding-left:14px;padding-right:14px}
+[data-theme="win7"] .dl{border:0}
+[data-theme="win7"] .menu,[data-theme="win7"] .results{background:#f5f8fd;border:1px solid #8aa4c8;border-radius:3px}
+[data-theme="ubuntu"] body{background:radial-gradient(900px 600px at 15% 10%,#a8438f 0%,transparent 60%),linear-gradient(160deg,#77216f 0%,#4a1642 50%,#2c001e 100%) fixed;padding:22px}
+[data-theme="ubuntu"] .app{background:var(--bg);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4);overflow:clip;max-width:1500px;margin:0 auto}
+[data-theme="ubuntu"] .chrome{display:flex;align-items:center;height:40px;padding:0 10px 0 16px;background:linear-gradient(#4a4a4a,#3a3a3a)}
+[data-theme="ubuntu"] .chrome .mac,[data-theme="ubuntu"] .chrome .xp{display:none}
+[data-theme="ubuntu"] .chrome .ttl{flex:1;text-align:center;font:700 14px var(--font);color:#f2f2f2;padding-left:84px}
+[data-theme="ubuntu"] .chrome .win{display:flex;gap:10px}
+[data-theme="ubuntu"] .chrome .win i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:700 11px Arial,sans-serif;font-style:normal;color:#eee;background:#5a5a5a}
+[data-theme="ubuntu"] .chrome .win i:last-child{background:#e95420;color:#fff}
+[data-theme="ubuntu"] .top{background:#ebebeb;border-bottom:1px solid #d0d0d0}
+[data-theme="ubuntu"] .brand{font-weight:700;color:#3d3d3d}
+[data-theme="ubuntu"] .btn{background:linear-gradient(#fdfdfd,#ececec);border:1px solid #cdcdcd;font-weight:500;border-radius:6px;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+[data-theme="ubuntu"] .btn:hover{background:#fff}
+[data-theme="ubuntu"] .btn.p{background:#e95420;border-color:#c34113;color:#fff}
+[data-theme="ubuntu"] .btn.p:hover{background:#f06a3a}
+[data-theme="ubuntu"] .search input{border-radius:6px;background:#fff;border-color:#cdcdcd;font-weight:400}
+[data-theme="ubuntu"] .search input:focus{border-color:#e95420;box-shadow:0 0 0 2px rgba(233,84,32,.25)}
+[data-theme="ubuntu"] .side{background:#f0f0f0}
+[data-theme="ubuntu"] .side a{border-radius:6px;font-weight:400;color:#3d3d3d}
+[data-theme="ubuntu"] .side a.on{font-weight:700;color:#a8340c}
+[data-theme="ubuntu"] .side .grp{color:#7a7a7a}
+[data-theme="ubuntu"] h1,[data-theme="ubuntu"] h2.sec,[data-theme="ubuntu"] h3{font-weight:300;color:#2d2d2d}
+[data-theme="ubuntu"] h1{font-weight:300}
+[data-theme="ubuntu"] pre{border-radius:8px}
+[data-theme="ubuntu"] .dl .row,[data-theme="ubuntu"] .pager a{background:#fff;border:1px solid #dcdcdc;border-radius:10px;margin-bottom:10px;padding-left:16px;padding-right:16px}
+[data-theme="ubuntu"] .dl{border:0}
+[data-theme="ubuntu"] .menu,[data-theme="ubuntu"] .results{background:#fff;border-radius:10px}
+[data-theme="macos"] ::-webkit-scrollbar{width:14px}
+[data-theme="macos"] ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.32);border-width:4px;border-radius:99px}
+[data-theme="win11"] ::-webkit-scrollbar{width:14px}
+[data-theme="win11"] ::-webkit-scrollbar-thumb{background:#8a8a8a;border-width:5px;border-radius:99px}
+[data-theme="winxp"] ::-webkit-scrollbar{width:17px}
+[data-theme="winxp"] ::-webkit-scrollbar-track{background:#f3f1e6}
+[data-theme="winxp"] ::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#c1d6fb,#9cb8f5 45%,#8aa9f0);border:1px solid #5b7fd6;border-radius:3px;background-clip:border-box}
+[data-theme="win95"] ::-webkit-scrollbar{width:16px;height:16px}
+[data-theme="win95"] ::-webkit-scrollbar-track{background:repeating-conic-gradient(#c0c0c0 0 25%,#fff 0 50%) 0 0/2px 2px}
+[data-theme="win95"] ::-webkit-scrollbar-thumb{background:#c0c0c0;border:0;border-radius:0;background-clip:border-box;box-shadow:inset -1px -1px #000,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #dfdfdf}
+[data-theme="win7"] ::-webkit-scrollbar{width:17px}
+[data-theme="win7"] ::-webkit-scrollbar-track{background:linear-gradient(90deg,#e8eef7,#f7f9fc)}
+[data-theme="win7"] ::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#f1f4f9,#d4deee 50%,#c0cfe6);border:1px solid #8aa0c4;border-radius:3px;background-clip:border-box}
+[data-theme="ubuntu"] ::-webkit-scrollbar-thumb{background:#b5b5b5;border-width:4px;border-radius:99px}
+[data-theme="win10"] body{background:radial-gradient(1000px 600px at 30% 0%,#2b9bff 0%,transparent 60%),linear-gradient(135deg,#0078d7,#012a5e) fixed;padding:20px}
+[data-theme="win10"] .app{background:#fff;border:1px solid #0078d7;box-shadow:0 12px 40px rgba(0,0,0,.45);max-width:1500px;margin:0 auto;overflow:clip}
+[data-theme="win10"] .chrome{display:flex;align-items:center;height:32px;background:#fff;padding-left:10px}
+[data-theme="win10"] .chrome .mac,[data-theme="win10"] .chrome .xp{display:none}
+[data-theme="win10"] .chrome .ttl{flex:1;font:400 12px var(--font);display:flex;align-items:center;gap:8px}
+[data-theme="win10"] .chrome .ttl:before{content:"";width:16px;height:16px;background:var(--icon) center/contain no-repeat}
+[data-theme="win10"] .chrome .win{display:flex;height:100%}
+[data-theme="win10"] .chrome .win i{width:46px;display:grid;place-items:center;font:400 12px "Segoe UI Symbol",sans-serif;font-style:normal}
+[data-theme="win10"] .chrome .win i:hover{background:#e5e5e5}
+[data-theme="win10"] .chrome .win i:last-child:hover{background:#e81123;color:#fff}
+[data-theme="win10"] .btn{background:#e1e1e1;border:2px solid transparent;font-weight:400;height:32px}
+[data-theme="win10"] .btn:hover{border-color:#0078d7;background:#e5f1fb}
+[data-theme="win10"] .btn.p{background:#0078d7;color:#fff}
+[data-theme="win10"] .side a.on{background:#cce4f7;box-shadow:inset 3px 0 0 #0078d7;font-weight:400}
+[data-theme="win10"] .side a{font-weight:400;border-radius:0}
+[data-theme="win10"] .search input{border:2px solid #ccc;font-weight:400}
+[data-theme="win10"] h1{font-weight:300}
+[data-theme="win10"] .dl .row,[data-theme="win10"] .pager a{border:1px solid #ccc;background:#fff;margin-bottom:8px;padding-left:14px;padding-right:14px}
+[data-theme="win10"] .dl{border:0}
+[data-theme="kde"] body{background:radial-gradient(900px 600px at 80% 10%,#6a4bd1 0%,transparent 60%),linear-gradient(160deg,#1d99f3,#0b2a55) fixed;padding:22px}
+[data-theme="kde"] .app{background:#fcfcfc;border-radius:6px;box-shadow:0 14px 44px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.35);overflow:clip;max-width:1500px;margin:0 auto}
+[data-theme="kde"] .chrome{display:flex;align-items:center;height:30px;padding:0 8px 0 12px;background:linear-gradient(#e3e6e9,#d4d8dc);border-bottom:1px solid #b7bcc1}
+[data-theme="kde"] .chrome .mac,[data-theme="kde"] .chrome .xp{display:none}
+[data-theme="kde"] .chrome .ttl{flex:1;text-align:center;font:600 13px var(--font);color:#232627;padding-left:70px}
+[data-theme="kde"] .chrome .win{display:flex;gap:6px}
+[data-theme="kde"] .chrome .win i{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font:700 10px Arial,sans-serif;font-style:normal;color:#4d4d4d;background:rgba(0,0,0,.08)}
+[data-theme="kde"] .chrome .win i:last-child:hover{background:#da4453;color:#fff}
+[data-theme="kde"] .btn{background:linear-gradient(#fcfcfc,#e8eaec);border:1px solid #bcc2c6;font-weight:400;border-radius:3px}
+[data-theme="kde"] .btn:hover{border-color:#3daee9}
+[data-theme="kde"] .btn.p{background:linear-gradient(#55bbf0,#3daee9);border-color:#2a8fc7;color:#fff}
+[data-theme="kde"] .search input{border:1px solid #bcc2c6;border-radius:3px;font-weight:400}
+[data-theme="kde"] .search input:focus{box-shadow:0 0 0 1px #3daee9;border-color:#3daee9}
+[data-theme="kde"] .side a{font-weight:400;border-radius:3px}
+[data-theme="kde"] .side a.on{background:#3daee9;color:#fff;font-weight:400}
+[data-theme="kde"] h1,[data-theme="kde"] h2.sec,[data-theme="kde"] h3{font-weight:600}
+[data-theme="kde"] .dl .row,[data-theme="kde"] .pager a{background:#fff;border:1px solid #d5d9dd;border-radius:3px;margin-bottom:8px;padding-left:14px;padding-right:14px}
+[data-theme="kde"] .dl{border:0}
+[data-theme="macos9"] body{background:#6e8caa repeating-conic-gradient(#6e8caa 0 25%,#7a98b6 0 50%) 0 0/4px 4px fixed;padding:20px;font-size:14px}
+[data-theme="macos9"] .app{background:#ddd;border:1px solid #000;box-shadow:2px 2px 0 #000,inset 1px 1px #fff;max-width:1500px;margin:0 auto;overflow:clip}
+[data-theme="macos9"] .chrome{display:flex;align-items:center;height:22px;padding:0 6px;background:repeating-linear-gradient(#fff 0 1px,#ccc 1px 2px);border-bottom:1px solid #000;position:relative}
+[data-theme="macos9"] .chrome .win,[data-theme="macos9"] .chrome .xp{display:none}
+[data-theme="macos9"] .chrome .mac{display:flex}
+[data-theme="macos9"] .chrome .mac i{width:12px;height:12px;border:1px solid #000;background:#fff;box-shadow:inset 1px 1px #ccc;display:block}
+[data-theme="macos9"] .chrome .mac i:nth-child(n+2){display:none}
+[data-theme="macos9"] .chrome .ttl{position:absolute;left:50%;transform:translateX(-50%);background:#ddd;padding:0 12px;font:700 12px var(--font);color:#000}
+[data-theme="macos9"] .top{background:#ddd;border-bottom:1px solid #000}
+[data-theme="macos9"] .btn{background:linear-gradient(#fff,#ccc);border:1px solid #000;border-radius:8px;font-weight:400;box-shadow:inset 1px 1px #fff,1px 1px 0 #000}
+[data-theme="macos9"] .btn:active{background:#999}
+[data-theme="macos9"] .btn.p{outline:2px solid #000;outline-offset:1px;font-weight:700}
+[data-theme="macos9"] .search input{border:1px solid #000;border-radius:0;font-weight:400;box-shadow:inset 1px 1px #999}
+[data-theme="macos9"] .wrap{background:#fff}
+[data-theme="macos9"] .side{background:#fff;border-right:1px solid #000}
+[data-theme="macos9"] .side a{font-weight:400;border-radius:0}
+[data-theme="macos9"] .side a.on{background:#3366cc;color:#fff;font-weight:400}
+[data-theme="macos9"] h1,[data-theme="macos9"] h2.sec,[data-theme="macos9"] h3{font-family:var(--font)}
+[data-theme="macos9"] pre{border:1px solid #000;border-radius:0}
+[data-theme="macos9"] .dl .row,[data-theme="macos9"] .pager a{background:#eee;border:1px solid #000;border-radius:0;margin-bottom:8px;padding-left:12px;padding-right:12px;box-shadow:2px 2px 0 #000}
+[data-theme="macos9"] .dl{border:0}
+[data-theme="android"] body{background:linear-gradient(160deg,#d9cff7,#f7d6e6 60%,#ffe3cf) fixed;padding:22px}
+[data-theme="android"] .app{background:#fffbfe;border-radius:32px;border:8px solid #1c1b1f;box-shadow:0 20px 60px rgba(40,20,80,.35);overflow:clip;max-width:1500px;margin:0 auto}
+[data-theme="android"] .chrome{display:flex;align-items:center;height:30px;padding:0 22px;background:#f7f2fa;font:500 12px var(--font)}
+[data-theme="android"] .chrome .mac,[data-theme="android"] .chrome .xp,[data-theme="android"] .chrome .win{display:none}
+[data-theme="android"] .chrome .ttl{flex:1;color:#1c1b1f}
+[data-theme="android"] .top{background:#f7f2fa;border:0}
+[data-theme="android"] .btn{background:#e8def8;color:#1d192b;border:0;border-radius:999px;font-weight:500;padding:0 20px}
+[data-theme="android"] .btn.p{background:#6750a4;color:#fff}
+[data-theme="android"] .btn:hover{box-shadow:0 1px 3px rgba(0,0,0,.25)}
+[data-theme="android"] .search input{border:0;border-radius:999px;background:#ece6f0;font-weight:400;padding-left:18px}
+[data-theme="android"] .side{background:#f7f2fa;border:0}
+[data-theme="android"] .side a{border-radius:999px;font-weight:500;padding:9px 16px}
+[data-theme="android"] .side a.on{background:#e8def8;color:#1d192b}
+[data-theme="android"] h1{font-weight:400;font-size:44px;letter-spacing:0}
+[data-theme="android"] h2.sec,[data-theme="android"] h3{font-weight:500}
+[data-theme="android"] pre{border-radius:16px}
+[data-theme="android"] .dl .row,[data-theme="android"] .pager a{background:#f3edf7;border:0;border-radius:24px;margin-bottom:10px;padding-left:20px;padding-right:20px}
+[data-theme="android"] .dl{border:0}
+[data-theme="android"] .menu,[data-theme="android"] .results{border-radius:20px;background:#f3edf7;border:0;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+</style>
+<style>
+@media (max-width:1180px){.toc{display:none}}
+@media (max-width:900px){
+.side{position:fixed;left:0;top:var(--high);z-index:25;transform:translateX(-100%);transition:transform .2s;width:290px}
+body.open .side{transform:none}
+.burger{display:inline-flex}
+.content{padding:28px 16px 70px}
+:root{--big:32px}
+.search{width:auto;flex:1}.search kbd{display:none}
+.top{padding:0 12px;gap:10px}.brand small{display:none}
+.pager{flex-direction:column}
+.dl .row{grid-template-columns:56px 1fr}.dl .logo{width:56px;height:56px}.dl .logo img{width:52px;height:52px}
+.dl .row .btn{grid-column:2;justify-self:start}
+html[data-theme] body{padding:0}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="vg" x1="1" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--l1)"/><stop offset=".45" style="stop-color:var(--l2)"/><stop offset="1" style="stop-color:var(--l3)"/></linearGradient><symbol id="vx" viewBox="0 106 504 256"><path fill="url(#vg)" d="M16 106H100L173 218L240 106H330L167 362Z"/><path fill="url(#vg)" d="M392 106L376 134.4L360 106L358 106L299.6 197.7L320 234L248 362L360 362L376 333.6L392 362L504 362L432 234L504 106Z"/></symbol></defs></svg>
+<div class="app">
+<div class="hdr">
+<div class="chrome" aria-hidden="true">
+<div class="mac"><i></i><i></i><i></i></div>
+<div class="ttl">Vextent Documentation</div>
+<div class="win"><i>&#8211;</i><i>&#9633;</i><i>&#10005;</i></div>
+<div class="xp"><i>_</i><i>&#9633;</i><i>X</i></div>
+</div>
+<header class="top">
+<button class="btn burger" id="burger" type="button" aria-label="Menu">&#9776;</button>
+<a class="brand" href="#/"><svg class="lg"><use href="#vx"/></svg>Vextent<small>Documentation V0.0.1</small></a>
+<span class="sp"></span>
+<div class="search">
+<input id="q" type="search" placeholder="Search" autocomplete="off" aria-label="Search">
+<kbd>/</kbd>
+<div class="results" id="res"></div>
+</div>
+<a class="btn p" href="#/" data-dl="1">Downloads</a>
+<div class="themewrap">
+<button class="btn" id="themebtn" type="button" aria-haspopup="true" aria-expanded="false">Theme: <span id="themename" style="margin-left:6px">Default</span></button>
+<div class="menu" id="menu" role="menu"></div>
+</div>
+<a id="modrinth-btn" class="btn ico" href="https://modrinth.com/plugin/vextent/" target="_blank" rel="noopener" aria-label="Modrinth page" title="Modrinth"><iconify-icon icon="simple-icons:modrinth"></iconify-icon></a>
+</header>
+</div>
+<div class="wrap">
+<aside class="side" id="side"><a class="home" href="#/" data-id="home">Overview and downloads</a><div class="grp">Start here</div><a href="#/what" data-id="what">What it is</a><a href="#/install" data-id="install">Installing</a><a href="#/first" data-id="first">Your first script</a><a href="#/layout" data-id="layout">How a script looks</a><div class="grp">The language</div><a href="#/variables" data-id="variables">Variables</a><a href="#/values" data-id="values">Values and maths</a><a href="#/flow" data-id="flow">Decisions and loops</a><a href="#/events" data-id="events">Events</a><a href="#/commands" data-id="commands">Commands</a><a href="#/functions" data-id="functions">Functions</a><a href="#/time" data-id="time">Timers and waiting</a><a href="#/async" data-id="async">Async and threads</a><a href="#/errors-lang" data-id="errors-lang">Handling errors</a><div class="grp">Connecting</div><a href="#/storage" data-id="storage">Saving data</a><a href="#/http" data-id="http">Calling web APIs</a><a href="#/webhooks" data-id="webhooks">Receiving webhooks</a><a href="#/java" data-id="java">Java and add-ons</a><div class="grp">Operating</div><a href="#/skript" data-id="skript">Coming from Skript</a><a href="#/admin" data-id="admin">The /vextent command</a><a href="#/config" data-id="config">config.yml</a><a href="#/trouble" data-id="trouble">When something breaks</a><a href="#/limits" data-id="limits">Limits and honesty</a><a href="#/cheat" data-id="cheat">Cheat sheet</a></aside>
+<main class="content" id="content">
+
+<section class="page" data-id="home" data-title="Overview and downloads" hidden>
+<p class="crumb">Documentation</p>
+<h1>Vextent</h1>
+<p class="intro">Vextent is a scripting language and runtime for Paper servers. You write script files for commands, events, timers, saved data, web requests and incoming webhooks, and reload them without restarting the server.</p>
+<div class="cta"><a class="btn p lg" href="Vextent-V0.0.1.jar" download>Download Vextent V0.0.1</a><a class="btn lg" href="#/first">Your first script</a></div>
+
+<div id="downloads">
+<div class="dlh">Vextent</div>
+<div class="dl">
+<div class="row"><div class="logo"><svg class="lg"><use href="#vx"/></svg></div><div><div class="name">Vextent-V0.0.1.jar<i>Plugin</i></div><div class="desc">Put it in your server's plugins folder. For Paper 1.21.11 on Java 21.</div></div><a class="btn" href="Vextent-V0.0.1.jar" download>Download</a></div>
+</div>
+<div class="dlh">Required</div>
+<div class="dl">
+<div class="row"><div class="logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAP+UlEQVR4nO1baXRUVbb+zrm3bg2ZMQNmhDAEAgQMyiBhULEUUREHtG2bFminpyz7BXCx9LlYC1kul/ZDpYEHKNpLXdqKjYIDICBpGQxIZBACJMSQBAhUqCSVVNWd734/YjDBVFKRJPSz3/enqu7d95x9vrvPPnvvcwr4Nwe7Uh0rNTeCFHEoGCtxpm7Rmq9PfrUExAW2/el+1BN68J7o5FIoFTeDFPFWANtA9I9gpTsaAG56tTTWIrxMprlw8tKSHtGlxy0gWOUGA8YD+DuAiKBs6YVFjfv+cf4vy05ZSUsBDABgGEGf+4G7pu4iakgiYA6BvT13mFzd1fqIXd1gewjU3AmmKNcBeA9AhLdO1/bslyNLAjPzTlvxNwAQTS2oBqpLLZtR+TfDNAs4xz0Aohgo6/XD9oefzlG7dGr0mAU0NuZBrI8YCtCnAOIrTqta4aEY13fqfxjHzEyXZWha0POjwYMnxdxRZWa/IQU2u6NMatGEZmoY/vRIpdS4+z4wCzYiHiVu+LD2cvTqEQuYORMQ610DAVpnWeh19ERA31s6xlGgPYha0yXJ3lNBu3oE1486yjIG7BBs0lkHABCB1AApgVqLAjUMWdV9FxjThn8LEzcSMAGg/TTtvnvYhnW/WrcesQC5yt0XwAZdp5S9B1XsOvOwsEcfIwXra9RI64A5fOR+W0rfbXZBqBfJgi43WFrQyxB9JkEfeL63lFkXy1JqophLsTkZtdK5FqBUccM65dfq1u0WIFe5UwF87A+avXfsS6Yt3jm2Ur+LYlDQMGpUgSspbVsEKGgodUx1Vcf7Mst6Cxk1MfbUmihEyFLcJQO+FHEAywGw79fq160EBKvcSQDW1XiN1E/23YotdZO401bsn3TtRldiQoHrqpo4OWXXwEDvE9FSkifC7lJs8R0MuBnUwhOOQU8QMH78eJGIssOVz0hhYm2dtaTGaya9u/8PweNKlDkq62XhWqvC3qcwLhB/dKLNrgoOAIwIlk6k1pGhG2QZqmWpBhEMi+yqZVmqZWk6WZYJEk2CXbEsXbEsXSMLQaK8vLy8gpZ9M8aKd+7caYSjZ9g+YNy4cVcxxsrQCdJEAbAswIIAxkxwANxqWzbEZQAAXfJ56fVLYBBRv927d3vD0jEcoWYwxrjNZnN15hkuNH8T2hPr4G7YIE3T/J15oNM+gDF2xfKH7kBYuYB25ww2zWRX4QomT92FkBZgTLs/DqCpAMYSMHooExK+hHVFkqfuRHtTIA3A3wBwBpDEhXPtu6r/mwj5RomxEgCNzb8lzuw9olEH6GoXFJIABlMF8F3zTxvnV3T+M8bgdruxYsUK5Ofnd1m7IafAf933ifD01ltLEupckwFA4lyBBUeX9dwJDBo0CHPmzMGwYcPAOYdhGJBlGU6n87LbbkXA+MXA76aLEnGargbw9CeVx4c8WphLaLIAYj3sBGJiYvDII49g4sSJsNt/noEHDhwAUdeUBVoRcP/dIrdAX4IwQXIRKhPOBhV7juZQRbuNcYkBZpf02gEEQcC9996L6dOno1evXq3umaaJkydPQhBCh07pVzO2O8y+WvkAEg0LwA40rffMmaSzs1f5DQCwcSb0hAWMHTsWy5cvx+zZs38xeACQZRnV1dUhCYiJYljzimtJsPJmqU2BS9CKgLmDAABrAfgBICKeqKxXPQGAxLnMqPsISEtLw+LFi/H888+jX79+Ib19IBBAaWkpOG/bfzvs0DjHA4yxtXKlu0Mn0aqVKcuqsfa1V3nZ0T+eBgB7JNmPJ57TiIFsjBNDF028lgo7HHjiiSewbNkyjBkzBqLYfnTu9Xrh9/tDElDnY1LxSUcAwDQwvKtU3RLZXnsXW7n5ryeh6I3To/qOK9i5PaefEhyiMgbRl3re5ndqitjFcQDnHLfffjvWrFmD6dOnIyIiIqznPB5Pu/c1HqO/98Mc25lqXQHgJtCHSqU7JqQezV9M3YoGsFxwRGWIcQO10h8mmADgTDBxJt5vCWC2rkoFRowYgaVLl2Lu3Lno3bv3L+4TERobG39x3TRNnDlzpl0HKPBG+qHRZX1adBuv9xkagPHEsF6udMe3JX+RAAbeAGAJAHLE9xEPfZ/FNGWA5oolsTLep4mcmZebCCQmJuK5557DkiVLkJ2d3eY81zQNW7dubdPEZVnG+fPn2yVAcqnI7ruJ7fDfJHz9XTJXVEsHcB0YPg1WuX/B9sVetuf3h8DFNQC2Mi7aeFy29WPxJINxSBX9z+kCZ+zXxoKSJGH27NlYuXIlJk6cCElq20H7fD68+eabyM3NbXNKKIqC06dPt0sAD3IkJ28if0OVscP3J/5tkSKaJpkAchiwUa5yp7dJAABs+89M0y19+XoSr1ftsSm2gwdHWLqWpvlTPA7FYRidHX9z+Lpq1So88MADiI6ODilbUVGBRYsW4Y477kB8fJvWCkVRcOzYsZAOEAAiVQG9axVzaP9tvFSOZfs8f6RDxQFCUwFpEIDP5Sp3/91rB7QmYPHi8ZCr3FnTcte/fIN9heDgJhA9DBUlN+n2OEOs7u1XOzP4IUOG4JVXXkF+fj5SU1NDyhER9u7di6eeegqPPfYY0tLSQsp6vV74fL52CRDB0Kc0ScjM3i7ptcX6Hj3Pdqg8V/qxQtF/EukDYF2uu6+9FQHzZ7kSGLAuM93RJyezTMmzbdVtUfGOw4fzDKJE/mN2bTCcICAuLg7PPPMMXnrpJeTk5LSrrKqq+OCDDzB//nwsWrQIgwcPDilrmiY8Hk9YIXBaVYyT0UkrZ/C3YtDv03fpD5lFR4SIC7W6iqZgbrkQaVdbEQCCH8BRACxnsJNyk9axLKFCNSJyxNM/3qKWZ551GaHKkABEUcRDDz2E1atXY/Lkya1i97bg8XjwwgsvYMWKFViwYAFGjhzZrrwsy/B6ve3O/+aB9K6JsCleQR8wtEDULxyhc2acdER7Qv22qDEiKFvzmcDekuI+QysCXOlbZCKaBeALgTNhbK5TnRDzJmKconikeIpqxuoOyxXaBubNm4eZM2ciNja2ffWIcODAATz55JPYuXMnHnzwQUydOrXDPF9V1Q6XQAAwCbBrgpRUmaLbnSXSiOGHuVJ/TikyhtsP+ud9/fHW/msdyVsuvslW9ulM36oA9CcCNjrs3Dbp2gvqjc7PVNmW7ayunBZgLLQFFBUVoaysDIYRuhyvqirWr1+P+fPno7a2FmPHjsWsWbPCeKtNy2NFRUWHsjoRiGBkViY4DY3UgcMKBL32KLcsyyw0Ro7/UMkf1lL+FxPUkbZVAWePAvikV6woTc3dZuQ6TpqHj93NTSN059u2bUN+fj5efPFFFBYWwu9vXZ2+cOECli1bhtdeew2cc6SkpCA/Px8uV3hVdlmWUVxc3K5PAQADRDqRkuGNEYJ1ZNmdJ+y5uccheysNAA4w/M+NS09crGu0GXg7U7aowUr345xBTU+W7p+R/Za29MAC8awZAYGHfsOyLGPXrl3YvXs30tPT4Xa7MWrUKAQCAaxcuRKHDx+G0+mEJEl49tlnkZiYGNbgLcuCx+NBIBBAVFRUu7IEwCCLkrwuUa4RgtFJhIHDCoSi7/qTFZeicVEaBLBsAN+HJAAAXOlfaXLF5LmMczknS/3D7+vflZcyM6wUk4hQUVGBN954Ax999BEEQYDH44HD4QBjDPPnz8egQYPCGjwABINB1NfXhyvOTCJHhGaTks4kB63BZzS784R95HUng98fTTsYlTpkLhg73CzcburlzNhmBCrcCwQOefyI8pmrJQWq3rmcyOfzNXX0U5Y3Y8YMjBs3rlNtaJoGj8cTlq8AAN0iYgAbUB9vO+CrMiJ7cWnwNZsVQWB3rXx4el1L2Q7D+4iMr0wm4HnLYq9rOrvsmmD//v3xxRdf4PPPP0d5eTl0Xe/wGV3XUVlZ2QkCLAUAMupimN9LDABEW0Wv7JGrplwqG1Z+Y0/+yprxuPy2qrUTCIQJxhhM08S5c+ewadMmvPfeeygsLERtbW3IIKc5BA6TAKaTxQDgam8kD9YwEF0s5f35r4ekVo2EneCpWtfUQprX+2Z/oCgKduzYgYULF+Kdd95BWVlZK6sgItTX14e1BAKABTCLyA4ALsXmSPInQGkkBYAOoASctaoS9egpsZaw2+1oaGiAz+fDnj17oKoqTp06hY0bN2LkyJGYNGkSsrOzIYoiGhoaoOt6WEumCQg6EQcARmDZvqv172o8f3dEC8stwvFLT5n1OAHNZs45h9frxb59+6CqP+dZjY2NKCgowDfffIOMjAzk5uZCUZSw578FCFqTD5AA4JYfMktzPIlPZaza1KYJXxECOOc4e/YsCgsLQzpBy7JQXl6O8vJyWJYVdsBEANct6+LRW26xoannoiLRYpuvJXqcgPLycjQ0NGDz5s3ths0t0VH01xIEwGztTJ1EGAFgZ1vyPU7A+++/3+19mARbi58E4Fr8qxDQ3SCAFMs8AeAYgK/BsJ8sOhFK/jdHgAGYy0m7LbveW9P7n9s7lP/NnfgAgPMgK5zBA79RAjqDTk0BIgIR/Sufk+l0uNpZH6C3PIfHACY0nSG6WM/igMUB86dPi9PP5xwZAxgYGAACQeME3WVCdICZOhfVRpsIW7QiCiZFSw2QbIz5Gsghq53alA1vbf0JYRMgCEKdaZpZLa/NsviAAaL0uY0xSeRckzhnImOiyJjTxrliY9yycSYIYA6RcxIEpgQjdbk6sZHKsi4EyjMrom0JcqRhZPHyEzcHj5ZNUZKjImx3Jr1Dk68r404n57JMf75rTnBDZ7ZlBUGo61iqCZe12affNUNkhFMArm7rPjGQ36XJVQkNKL+qXi/PrNaU5AtOZy9LEEQmBRqvUUsOTdCPV0wwpbh+9lz7CePW9DXW6BEWt4mMA3ieQMtdaVu77Q9Ul7UMCqZpWFw4iJ8JsDSbGTyT4OdlveroSPxZ3Zd6XohItARXLCRRQFQkGBp9o5XiorxgSfk1ZE8czOISuGOitMGcNGgzDRnoFBhjHMCLDGy5M+2rbv332GVv9xrTZjwK4HoAewHsXnzj9iRKq/84KgFwxkBkHFJzV431o+XiouvpWMlgOJKGmLaIWOcAoUod41wj5I04r6Yl25sjuNcBLOruwTdpdZmge36HPZof4z5r2mh4/ZDABAHbAExolgn6hyvF+28wD//QT3QkZuv2mKslOzMoT9puZEV9IOVd5wzGRosSmrz4akZsoSN9S4+sNt1y9m/5EcEN4DMApQBefX/1K30t16AnHfF9RMZFG4DGW+yfHhqRuH706NxI1WHnzcXWty3w/Ii0zT1yGAvovkBoKwA3Z3TNU0PNtfY092JnYv8jjIsigK8BjB0Q/emUvFFRqxx23mz270MU5/Xk4IEePP19w3+X9gXoZg56a/u8LAMA1PNTuKWZCwH0YwIedyR/1XGF9LeGwOkpzF9x2799SP7/uFL4X1M/4UCONN6yAAAAAElFTkSuQmCC" alt="Paper logo"></div><div><div class="name">Paper<i>Required</i></div><div class="desc">The server software Vextent runs on. Version 1.21.11.</div><div class="src">papermc.io</div></div><a class="btn" href="https://papermc.io/downloads/paper" target="_blank" rel="noopener">Download</a></div>
+<div class="row"><div class="logo"><iconify-icon icon="simple-icons:eclipseadoptium" style="--b:#ff1464"></iconify-icon></div><div><div class="name">Java 21 (Eclipse Temurin)<i>Required</i></div><div class="desc">Paper 1.21.11 and Vextent need Java 21 or newer.</div><div class="src">adoptium.net</div></div><a class="btn" href="https://adoptium.net/temurin/releases/?version=21" target="_blank" rel="noopener">Download</a></div>
+</div>
+<div class="dlh">Optional plugins (soft dependencies)</div>
+<div class="dl">
+<div class="row"><div class="logo"><img src="https://cdn.modrinth.com/data/ayRaM8J7/75b4141b5e316a73a0372e895bb24e09122759f1_96.webp" alt="VaultUnlocked logo"></div><div><div class="name">VaultUnlocked<i>Optional</i></div><div class="desc">Maintained, Vault-compatible economy and permission bridge. Scripts reach it with <code>service</code> and <code>plugin "Vault" is enabled</code>.</div><div class="src">modrinth.com</div></div><a class="btn" href="https://modrinth.com/plugin/vaultunlocked" target="_blank" rel="noopener">Download</a></div>
+<div class="row"><div class="logo"><img src="https://cdn.modrinth.com/data/Vebnzrzj/90943902cc650e95b167265b8f2d7c893f82c8f4_96.webp" alt="LuckPerms logo"></div><div><div class="name">LuckPerms<i>Optional</i></div><div class="desc">Permissions. Scripts check them with <code>has permission "..."</code>.</div><div class="src">modrinth.com</div></div><a class="btn" href="https://modrinth.com/plugin/luckperms" target="_blank" rel="noopener">Download</a></div>
+</div>
+<p style="font-size:14px;color:var(--dim)">Vextent has no hard plugin dependencies. These are the plugins its examples are written around. Any plugin that registers a Bukkit service can be reached the same way as Vault.</p>
+<div class="dlh">Optional tools</div>
+<div class="dl">
+<div class="row"><div class="logo"><iconify-icon icon="simple-icons:caddy" style="--b:#1f88c0"></iconify-icon></div><div><div class="name">Caddy<i>Optional</i></div><div class="desc">Reverse proxy that puts HTTPS in front of the webhook server.</div><div class="src">caddyserver.com</div></div><a class="btn" href="https://caddyserver.com/download" target="_blank" rel="noopener">Download</a></div>
+<div class="row"><div class="logo"><iconify-icon icon="simple-icons:mariadb" style="--b:var(--text)"></iconify-icon></div><div><div class="name">MariaDB<i>Optional</i></div><div class="desc">Only if several servers should share variables. SQLite needs nothing extra.</div><div class="src">mariadb.org</div></div><a class="btn" href="https://mariadb.org/download/" target="_blank" rel="noopener">Download</a></div>
+</div>
+</div>
+
+<h2 class="sec">Install</h2>
+<ol class="s">
+<li>Install Java 21 and Paper 1.21.11 from the downloads above, and start Paper once.</li>
+<li>Put <code>Vextent-V0.0.1.jar</code> in <code>plugins</code> and restart. Vextent creates <code>plugins/Vextent/scripts</code> and a <code>config.yml</code>.</li>
+<li>Add a script and run <code>/vextent reload</code>. See <a href="#/first">Your first script</a>. No restart is needed after this.</li>
+</ol>
+
+<h2 class="sec">Topics</h2>
+<ul class="links">
+<li><a href="#/variables">Variables</a> <span>per-player data, lists, declared defaults, creating variables by name</span></li>
+<li><a href="#/events">Events</a> and <a href="#/commands">Commands</a> <span>react to players, create commands with cooldowns and permissions</span></li>
+<li><a href="#/http">Calling web APIs</a> <span>HTTPS requests with JSON, redirects and retries</span></li>
+<li><a href="#/webhooks">Receiving webhooks</a> <span>let websites and bots trigger scripts, with token auth</span></li>
+<li><a href="#/skript">Coming from Skript</a> <span>run <code>.sk</code> files or convert them</span></li>
+<li><a href="#/trouble">When something breaks</a> <span>reading errors, common fixes</span></li>
+</ul>
+</section>
+
+<section class="page" data-id="what" data-title="What it is" hidden><p class="crumb">Start here</p><h1>What it is</h1><p>Vextent reads script files (<code>.vxt</code>) and turns them into server behaviour: commands, reactions to things players do, timers, saved data, and talking to websites. You do not need to know Java.</p>
+<p>It also reads many Skript files (<code>.sk</code>) by translating them, and can convert them into <code>.vxt</code> for you. See <a href="#/skript">Coming from Skript</a> for what that does and does not cover.</p>
+<p>Vextent needs <b>Paper 1.21.11</b> and <b>Java 21</b>.</p>
+
+<div class="note"><b>What has been tested</b>
+The plugin has been run on a real Paper 1.21.11 server: loading, commands, loops, waiting, saved variables, reload, converting Skript, web requests over HTTPS and the incoming webhook server. The long list of player events is built on Paper's own event system but has only been parsed, not exercised by live players. If an event misbehaves for you, <code>/vextent errors</code> will say why.</div></section>
+<section class="page" data-id="install" data-title="Installing" hidden><p class="crumb">Start here</p><h1>Installing</h1><ol class="s">
+<li>Put <code>Vextent-V0.0.1.jar</code> in your server's <code>plugins</code> folder.</li>
+<li>Start the server. Vextent creates <code>plugins/Vextent/</code> with a <code>config.yml</code> and a <code>scripts</code> folder.</li>
+<li>The first time only, it also drops three example scripts into <code>scripts</code>. They start with a dash (<code>-welcome.vxt</code>), which means <em>switched off</em>. Remove the dash to enable one.</li>
+<li>Edit or add scripts, then run <code>/vextent reload</code>. No restart needed.</li>
+</ol>
+<p>What goes where:</p>
+<table>
+<tr><th>Path</th><th>What it is</th></tr>
+<tr><td><code>plugins/Vextent/scripts/</code></td><td>Your scripts. Sub-folders are fine; every <code>.vxt</code> (and <code>.sk</code>) file inside is loaded. A file name starting with <code>-</code> is skipped.</td></tr>
+<tr><td><code>plugins/Vextent/config.yml</code></td><td>Settings and safety limits. See <a href="#/config">config.yml</a>.</td></tr>
+<tr><td><code>plugins/Vextent/data/</code></td><td>Where saved variables live (a JSON file by default).</td></tr>
+<tr><td><code>plugins/Vextent/converted/</code></td><td>Output of <code>/vextent convert</code>.</td></tr>
+</table>
+<p>To do anything with Vextent in game you need the <code>vextent.admin</code> permission (operators have it by default).</p></section>
+<section class="page" data-id="first" data-title="Your first script" hidden><p class="crumb">Start here</p><h1>Your first script</h1><p>Create <code>plugins/Vextent/scripts/hello.vxt</code> with this inside:</p>
+<pre><code>on join:
+    message "&amp;aWelcome, %player's name%!"
+
+command /hello [target: player]:
+    trigger:
+        message "Hello there, %target's name otherwise sender's name%"</code></pre>
+<p>Run <code>/vextent reload</code>. Join the server and you get the message. Type <code>/hello</code> for a greeting, or <code>/hello SomeoneOnline</code>.</p>
+<p>Three things to notice. Indentation (4 spaces) shows what belongs inside what. Text goes in double quotes. Anything between <code>%</code> signs inside the text is calculated and pasted in, like the player's name.</p></section>
+<section class="page" data-id="layout" data-title="How a script looks" hidden><p class="crumb">Start here</p><h1>How a script looks</h1><h3>Indentation</h3>
+<p>A line ending in a colon opens a block. Everything indented underneath belongs to it. Use spaces or tabs, but stay consistent inside one file.</p>
+<h3>Comments</h3>
+<p>Anything after <code>#</code> (outside of quotes) is ignored.</p>
+<pre><code># this is a note to yourself
+message "hi"   # this too</code></pre>
+<h3>Text, colours and pasting values in</h3>
+<ul>
+<li>Text is in double quotes. To put a quote inside text, double it: <code>"say ""hi"""</code>.</li>
+<li><code>&amp;a</code>, <code>&amp;c</code> and the other <code>&amp;</code> codes make colours. <code>&amp;#ff8800</code> makes a hex colour.</li>
+<li><code>%something%</code> inside text is replaced by its value: <code>"You have %{coins}% coins"</code>. For a real percent sign write <code>%%</code>.</li>
+<li>Inside a <code>%...%</code> you can use variables, properties and maths, but not quote marks outside of <code>{...}</code>. If you need text there, put it in a variable first.</li>
+</ul>
+<h3>Top-level pieces</h3>
+<p>The first level of a file can contain these sections. Each has its own chapter.</p>
+<table>
+<tr><th>Section</th><th>Purpose</th></tr>
+<tr><td><code>on ...:</code></td><td>Run when something happens</td></tr>
+<tr><td><code>command /name:</code></td><td>Create a command</td></tr>
+<tr><td><code>function name(...):</code></td><td>Reusable piece of logic</td></tr>
+<tr><td><code>every ...:</code> / <code>at 06:00:</code> / <code>cron "...":</code></td><td>Run on a schedule</td></tr>
+<tr><td><code>webhook "/path":</code></td><td>Answer a request from another program</td></tr>
+<tr><td><code>variable {name}: type = value</code></td><td>Declare a saved variable with a default</td></tr>
+<tr><td><code>const NAME = value</code></td><td>A fixed value you can use everywhere in the file</td></tr>
+<tr><td><code>config:</code></td><td>Settings for the script, in one place</td></tr>
+<tr><td><code>enum Name: A, B, C</code></td><td>A fixed list of names</td></tr>
+<tr><td><code>database "name":</code></td><td>Send some variables to a different database</td></tr>
+</table></section>
+<section class="page" data-id="variables" data-title="Variables" hidden><p class="crumb">The language</p><h1>Variables</h1><p>A variable is a named box that holds a value. The name goes in curly braces.</p>
+<table>
+<tr><th>Kind</th><th>Looks like</th><th>Lives</th></tr>
+<tr><td>Local</td><td><code>{_count}</code></td><td>Only inside the block that created it. Gone when the block ends. Fastest.</td></tr>
+<tr><td>Global</td><td><code>{coins}</code></td><td>Whole server, saved to disk, survives restarts.</td></tr>
+</table>
+<p>Variable names are not case-sensitive: <code>{Coins}</code> and <code>{coins}</code> are the same box.</p>
+<h3>Changing them</h3>
+<pre><code>set {coins} to 10
+add 5 to {coins}
+remove 2 from {coins}
+delete {coins}</code></pre>
+<p>If a variable was never set, reading it gives nothing. Use <code>otherwise</code> to supply a fallback:</p>
+<pre><code>set {_c} to {coins} otherwise 0</code></pre>
+<h3>Variables per player (trees)</h3>
+<p>Put a dot (or <code>::</code>) in the name to build a tree. Putting a player's UUID in the name gives each player their own boxes:</p>
+<pre><code>set {players.%player's uuid%.kills} to 0
+add 1 to {players.%player's uuid%.kills}
+message "Kills: %{players.%player's uuid%.kills}%"</code></pre>
+<p>Use the UUID, not the player name, because names can change. Everything between the percent signs in a variable name is worked out first.</p>
+<h3>Lists</h3>
+<p>A name ending in <code>::*</code> is a list. <code>add</code> puts a new item on the end.</p>
+<pre><code>add "apple" to {_fruit::*}
+add "pear" to {_fruit::*}
+message "I have %size of {_fruit::*}% fruits"
+loop {_fruit::*}:
+    message loop-value</code></pre>
+<p>You can also write lists directly: <code>1, 2 and 3</code> or <code>[1, 2, 3]</code>. A map (name and value pairs) is written <code>[a: 1, b: 2]</code>, and an empty one is <code>[:]</code>. Read an entry with <code>{_m}["a"]</code> or <code>{_m.a}</code>.</p>
+<div class="warn"><b>Mixing</b>Pick one style per variable: either a map literal or separate tree entries like <code>{_m.c}</code>. Mixing them in one variable gives confusing sizes.</div>
+<p>Looping over a tree with sub-branches (<code>loop {stats::*}</code>) gives you the branch names in <code>loop-index</code>. Build the full name yourself to read deeper values: <code>{stats.%loop-index%.kills}</code>.</p>
+
+<h3>Declaring a variable with a type and default</h3>
+<p>At the top of a script you can say what a variable is and what it starts as:</p>
+<pre><code>variable {coins}: number = 10
+variable {rank}: text = "member"
+variable {tags::*}: texts = "new", "player"</code></pre>
+<ul>
+<li>The default is only written when the variable has no value yet, so reloads and restarts never overwrite saved data.</li>
+<li>The default is converted to the type you named. If it cannot be (for example text "abc" as a number) you get a clear error.</li>
+<li>Declarations run before anything else in the script, so <code>on load</code> and every other block can rely on them.</li>
+<li>The name must be global (no leading <code>_</code>). The type comes from the list on the <a href="#/values">values</a> chapter; the type is checked for the default only, not for every later change.</li>
+</ul>
+
+<h3>Creating variables by name while running</h3>
+<p>Sometimes the name is only known while the script runs. These tools take the name as text, using dots or <code>::</code> between levels:</p>
+<pre><code>create variable "players.steve.kills" with value 3
+set {_n} to "players.steve.kills"
+message "Kills: %variable {_n}%"
+if variable {_n} exists:
+    delete variable {_n}
+set {_names::*} to variable names under "players"</code></pre>
+<table>
+<tr><th>You write</th><th>What it does</th></tr>
+<tr><td><code>create variable "a.b" [with value x]</code></td><td>Creates it (or overwrites it). With no value it is created as <code>true</code>.</td></tr>
+<tr><td><code>variable "a.b"</code></td><td>Reads it. Gives nothing if missing.</td></tr>
+<tr><td><code>variable "a.b" exists</code></td><td>True when it has a value.</td></tr>
+<tr><td><code>delete variable "a.b"</code></td><td>Removes it and everything under it.</td></tr>
+<tr><td><code>variable names under "a"</code></td><td>List of the next level of names.</td></tr>
+</table>
+<p>These make global variables only. Local ones (<code>{_x}</code>) cannot be made by name. At most 16 levels deep.</p>
+
+<h3>Typed locals, constants, config, enums</h3>
+<pre><code>let {_n}: integer = 5            # a local with a type
+
+const MAX_HOMES = 3             # fixed, usable as MAX_HOMES
+
+config:                          # grouped settings
+    prefix: "[Shop]"
+    limits:
+        homes: 3
+
+enum Rank: MEMBER, VIP, ADMIN</code></pre>
+<p>Use them as <code>"%MAX_HOMES%"</code>, <code>config.prefix</code>, <code>config.limits.homes</code> and <code>Rank.VIP</code>. Constants and config values are worked out when the script loads, so they cannot depend on players or variables.</p></section>
+<section class="page" data-id="values" data-title="Values and maths" hidden><p class="crumb">The language</p><h1>Values and maths</h1><table>
+<tr><th>Type name</th><th>Example</th></tr>
+<tr><td>text</td><td><code>"hello"</code></td></tr>
+<tr><td>number / integer</td><td><code>5</code>, <code>2.5</code></td></tr>
+<tr><td>boolean</td><td><code>true</code>, <code>false</code></td></tr>
+<tr><td>timespan</td><td><code>5 seconds</code>, <code>2 minutes</code>, <code>10 ticks</code></td></tr>
+<tr><td>list / map</td><td><code>[1, 2, 3]</code>, <code>[a: 1]</code></td></tr>
+<tr><td>player, offlineplayer, entity, livingentity</td><td><code>player</code>, <code>player named "Steve"</code></td></tr>
+<tr><td>location, world, block, vector</td><td><code>player's location</code></td></tr>
+<tr><td>item, material, inventory</td><td><code>5 diamond</code></td></tr>
+<tr><td>gamemode, entitytype, particle, damagecause, potioneffecttype, enchantment, commandsender</td><td>named values from Minecraft</td></tr>
+</table>
+<p>Put <code>s</code> on a type name for a list of it: <code>texts</code>, <code>players</code>.</p>
+<h3>Maths and comparisons</h3>
+<pre><code>set {_x} to 2 + 3 * 4        # 14
+set {_y} to 7 / 2            # 3.5
+set {_z} to 7 mod 3          # 1
+set {_p} to 2 ^ 3            # 8
+if {_x} is greater than 10:  ...
+if {_x} is between 1 and 20: ...
+if {_s} contains "abc":      ...
+if {_s} starts with "a":     ...
+if {_a} is 5 and {_b} is not 6: ...
+if {_v} is set:              ...</code></pre>
+<p>Comparisons can also be written <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code>, <code>!=</code>.</p>
+<h3>Handy built-in functions</h3>
+<table>
+<tr><th>Group</th><th>Functions</th></tr>
+<tr><td>Numbers</td><td class="wrap"><code>abs</code> <code>floor</code> <code>ceil</code> <code>round</code> <code>sqrt</code> <code>pow</code> <code>min</code> <code>max</code> <code>clamp</code> <code>sum</code> <code>average</code> <code>random</code> <code>randomInt</code> <code>parseNumber</code></td></tr>
+<tr><td>Text</td><td class="wrap"><code>upper</code> <code>lower</code> <code>trim</code> <code>capitalize</code> <code>replace</code> <code>split</code> <code>join</code> <code>substring</code> <code>indexOf</code> <code>repeat</code> <code>padLeft</code> <code>format</code> <code>colored</code> <code>stripColor</code> <code>urlencode</code></td></tr>
+<tr><td>Lists</td><td class="wrap"><code>sorted</code> <code>reversed</code> <code>shuffled</code> <code>unique</code> <code>first</code> <code>last</code> <code>slice</code> <code>range</code> <code>listOf</code> <code>setOf</code> <code>mapOf</code> <code>coalesce</code></td></tr>
+<tr><td>JSON</td><td class="wrap"><code>tojson</code> <code>fromjson</code> <code>jsonParse</code> <code>jsonStringify</code> <code>jsonPretty</code></td></tr>
+<tr><td>Time</td><td class="wrap"><code>now</code> (milliseconds since 1970) <code>formatTime</code> <code>seconds</code> <code>minutes</code> <code>ticks</code> <code>toSeconds</code></td></tr>
+<tr><td>Minecraft</td><td class="wrap"><code>location</code> <code>offset</code> <code>vector</code> <code>distance</code> <code>item</code> <code>player</code> <code>offlinePlayer</code> <code>world</code></td></tr>
+</table>
+<p>Call them like <code>upper("abc")</code> or <code>round(2.567 * 100) / 100</code>. There are also expression forms such as <code>random integer between 1 and 6</code>, <code>random element of {list::*}</code>, <code>size of {list::*}</code>, <code>type of {x}</code>.</p></section>
+<section class="page" data-id="flow" data-title="Decisions and loops" hidden><p class="crumb">The language</p><h1>Decisions and loops</h1><pre><code>if {_x} is 4:
+    message "four"
+else if {_x} is 5:
+    message "five"
+else:
+    message "something else"
+
+loop 3 times:                      # runs 3 times, loop-value is 1, 2, 3
+    message "round %loop-value%"
+
+loop {_list::*}:                   # loop-value is the item, loop-index its position/name
+    message loop-value
+
+for {_k}, {_v} in {_map}:          # keys and values together
+    message "%{_k}% = %{_v}%"
+
+set {_i} to 0
+while {_i} &lt; 3:
+    add 1 to {_i}</code></pre>
+<table>
+<tr><th>Word</th><th>Meaning</th></tr>
+<tr><td><code>stop</code> (or <code>exit</code>)</td><td>End this whole block of script right here.</td></tr>
+<tr><td><code>return value</code></td><td>Give a value back from a function (and end it).</td></tr>
+<tr><td><code>break</code></td><td>Leave the current loop.</td></tr>
+<tr><td><code>continue</code></td><td>Jump to the next round of the loop.</td></tr>
+</table>
+<p>A loop is capped by <code>security.max-loop-iterations</code> (default 1,000,000) so a mistake cannot freeze the server. See <a href="#/limits">Limits</a>.</p></section>
+<section class="page" data-id="events" data-title="Events" hidden><p class="crumb">The language</p><h1>Events</h1><p>An event block runs every time something happens. The word <code>on</code> is followed by the event name.</p>
+<pre><code>on join:
+    broadcast "&amp;e%player's name% joined!"
+
+on break of diamond ore:
+    if player doesn't have permission "vip.diamonds":
+        cancel event
+        message "&amp;cOnly VIPs can mine diamonds here."</code></pre>
+<h3>Values that come with an event</h3>
+<p>Inside the block you can use names tied to the event: <code>player</code>, <code>block</code>, <code>attacker</code>, <code>message</code> and so on. You can also write them with <code>event-</code> in front (<code>event-block</code>). Some can be changed: <code>set message to "..."</code> in a chat event, <code>set join message to "..."</code> in a join event.</p>
+<p>To see exactly what an event offers on your server, run <code>/vextent inspect events</code>.</p>
+<h3>Cancelling</h3>
+<p><code>cancel event</code> stops Minecraft from doing the thing (the block stays, the chat message is not sent, no damage is taken). <code>uncancel event</code> reverses it, and <code>event is cancelled</code> checks it. Events that Minecraft does not allow cancelling give an error that says so. By default your block only runs for events that nobody else has cancelled; add <code>even if cancelled</code> after the event name to also see cancelled ones.</p>
+<h3>Priority</h3>
+<p>If several plugins react to the same event, <code>with priority high</code> (lowest, low, normal, high, highest, monitor) controls the order. Leave it out unless you have a reason.</p>
+<h3>Available events</h3>
+<table>
+<tr><th>Group</th><th>Names you can write after <code>on</code></th></tr>
+<tr><td>Players</td><td class="wrap"><code>join</code> <code>quit</code> <code>kick</code> <code>player death</code> <code>respawn</code> <code>teleport</code> <code>move</code> <code>chat</code> <code>command</code> <code>world change</code> <code>gamemode change</code> <code>toggle sneak</code> <code>start sneaking</code> <code>toggle sprint</code> <code>toggle flight</code> <code>drop</code> <code>pickup</code> <code>consume</code> <code>item held</code> <code>bed enter</code> <code>bed leave</code> <code>fish</code> <code>exp change</code> <code>level change</code> <code>swap hand items</code> <code>advancement</code> <code>resource pack status</code> <code>pre login</code> <code>item break</code> <code>shear</code> <code>bucket empty</code> <code>bucket fill</code> <code>portal</code> <code>jump</code> <code>right click on block</code> <code>left click on block</code> <code>interact</code> <code>right click on entity</code></td></tr>
+<tr><td>Blocks</td><td class="wrap"><code>break</code> <code>place</code> <code>block burn</code> <code>block ignite</code> <code>block explode</code> <code>block form</code> <code>block spread</code> <code>block flow</code> <code>piston extend</code> <code>piston retract</code> <code>redstone change</code> <code>block dispense</code> <code>block grow</code> <code>block fade</code> <code>sign change</code> <code>leaves decay</code> <code>block damage</code></td></tr>
+<tr><td>Entities</td><td class="wrap"><code>damage</code> <code>attack</code> <code>spawn</code> <code>creature spawn</code> <code>entity explode</code> <code>explosion prime</code> <code>entity target</code> <code>shoot bow</code> <code>projectile launch</code> <code>projectile hit</code> <code>entity tame</code> <code>heal</code> <code>entity pickup item</code> <code>entity change block</code> <code>entity combust</code> <code>breed</code> <code>entity teleport</code> <code>entity drop item</code> <code>item spawn</code> <code>item despawn</code> <code>mount</code> <code>dismount</code> <code>potion splash</code> <code>hunger</code> <code>potion effect change</code> <code>entity resurrect</code> <code>lightning strike</code> <code>hanging break</code> <code>hanging place</code></td></tr>
+<tr><td>Inventories</td><td class="wrap"><code>inventory click</code> <code>inventory close</code> <code>inventory open</code> <code>inventory drag</code> <code>craft</code> <code>prepare craft</code> <code>furnace smelt</code> <code>furnace burn</code> <code>furnace extract</code> <code>hopper move</code> <code>enchant</code> <code>brew</code></td></tr>
+<tr><td>World and server</td><td class="wrap"><code>world load</code> <code>world unload</code> <code>world save</code> <code>chunk load</code> <code>chunk unload</code> <code>tree grow</code> <code>weather change</code> <code>thunder change</code> <code>time skip</code> <code>portal create</code> <code>server load</code> <code>plugin enable</code> <code>plugin disable</code> <code>server list ping</code> <code>console command</code></td></tr>
+<tr><td>Vehicles</td><td class="wrap"><code>vehicle enter</code> <code>vehicle exit</code> <code>vehicle destroy</code> <code>vehicle damage</code> <code>vehicle create</code></td></tr>
+<tr><td>Yours</td><td class="wrap"><code>custom event "name"</code>, fired from a script with <code>trigger event "name"</code></td></tr>
+<tr><td>Script life</td><td class="wrap"><code>on load</code> (script just loaded) and <code>on unload</code> (about to be removed or reloaded)</td></tr>
+</table>
+<p>Some events accept a filter, for example <code>on break of diamond ore</code>, <code>on right click on chest</code>, <code>on command "spawn"</code>. Anything Bukkit fires that is not on this list can be listened to with <code>on event "full.class.Name"</code> but only after you add the class to the Java allow list (see <a href="#/java">Java and add-ons</a>).</p>
+<div class="warn"><b>Chat is asynchronous</b>Paper delivers chat on a separate thread. Inside <code>on chat</code>, put anything that touches the world (messages to players, teleports, blocks) inside a <code>sync:</code> block. See <a href="#/async">Async and threads</a>.</div>
+
+<h3>Things you can do (effects)</h3>
+<table>
+<tr><th>Group</th><th>Lines you can write</th></tr>
+<tr><td>Messages</td><td class="wrap"><code>message "..."</code>, <code>send "..." to player</code>, <code>broadcast "..."</code>, <code>send action bar "..." to player</code>, <code>send title "..." with subtitle "..." to player</code>, <code>clear title of player</code></td></tr>
+<tr><td>Players</td><td class="wrap"><code>kick player because "..."</code>, <code>heal player</code>, <code>feed player</code>, <code>damage player by 4</code>, <code>kill player</code>, <code>teleport player to location</code>, <code>give 5 diamond to player</code>, <code>make player run command "spawn"</code>, <code>deny login with "..."</code> (in pre login)</td></tr>
+<tr><td>World</td><td class="wrap"><code>drop item at location</code>, <code>spawn zombie at location</code>, <code>spawn 3 of zombie at location</code>, <code>strike lightning at location</code>, <code>create explosion of power 2 at location</code>, <code>play sound "..." to player</code>, <code>show 10 flame at location</code></td></tr>
+<tr><td>Potions</td><td class="wrap"><code>apply speed to player for 30 seconds</code>, <code>remove potion effect speed from player</code>, <code>clear potion effects of player</code></td></tr>
+<tr><td>Screens</td><td class="wrap"><code>open inventory to player</code>, <code>close inventory of player</code>, bossbars (<code>create bossbar</code>, <code>show bossbar</code>, ...), sidebars (<code>show sidebar titled "..." with "line1", "line2" to player</code>), teams (<code>create team</code>, <code>add player to team</code>, ...), advancements (<code>grant advancement</code>)</td></tr>
+<tr><td>Server</td><td class="wrap"><code>execute console command "..."</code> (can be turned off in config), <code>trigger event "name"</code>, <code>log "..."</code>, <code>log warning "..."</code>, <code>log error "..."</code>, <code>save variables</code></td></tr>
+</table>
+<p>Use <code>/vextent parse "your line"</code> to check any single line without running it.</p></section>
+<section class="page" data-id="commands" data-title="Commands" hidden><p class="crumb">The language</p><h1>Commands</h1><pre><code>command /pay &lt;target: player&gt; &lt;amount: number&gt;:
+    description: Send coins to another player
+    permission: myserver.pay
+    permission message: &amp;cYou cannot use /pay.
+    aliases: /send
+    cooldown: 3 seconds
+    cooldown message: &amp;cWait %remaining%.
+    executable by: players
+    trigger:
+        if amount &lt;= 0:
+            message "&amp;cAmount must be above zero."
+            stop
+        remove amount from {coins.%player's uuid%}
+        add amount to {coins.%target's uuid%}
+        message "&amp;aSent %amount% to %target's name%."</code></pre>
+<ul>
+<li><code>&lt;name: type&gt;</code> is required. <code>[name: type]</code> is optional. Use the name directly in the trigger (<code>target</code>, <code>amount</code>), or <code>arg-1</code>, <code>arg-2</code>. If someone types the wrong thing, they are shown the usage line.</li>
+<li><code>sender</code> is whoever ran it. <code>player</code> is the same when it is a player and gives an error when the console used it, so add <code>executable by: players</code> when you use <code>player</code>.</li>
+<li><code>[name: type...]</code> as the last argument takes all the remaining words.</li>
+<li>Options: <code>description</code>, <code>permission</code>, <code>permission message</code>, <code>aliases</code>, <code>cooldown</code>, <code>cooldown message</code>, <code>usage</code>, <code>executable by</code> (players / console), <code>suggestions</code>, and <code>subcommand</code> blocks. Cooldowns are per sender; players with <code>vextent.cooldown.bypass</code> skip them.</li>
+</ul>
+<h3>Subcommands and tab suggestions</h3>
+<pre><code>command /warp [name: text]:
+    suggestions:
+        name: "spawn", "arena"
+    trigger:
+        set {_n} to name otherwise "spawn"
+        message "Warping to %{_n}%"</code></pre>
+<p>The <code>suggestions:</code> block gives the tab-complete list for an argument. For commands like <code>/shop buy</code> and <code>/shop sell</code>, put <code>subcommand</code> blocks inside the main command, each with its own <code>trigger:</code>:</p>
+<pre><code>command /shop:
+    subcommand buy &lt;item: text&gt;:
+        trigger:
+            message "buying %item%"
+    subcommand sell &lt;item: text&gt;:
+        trigger:
+            message "selling %item%"</code></pre></section>
+<section class="page" data-id="functions" data-title="Functions" hidden><p class="crumb">The language</p><h1>Functions</h1><p>A function is a named recipe you can use from anywhere in your scripts.</p>
+<pre><code>function greet(name: text, punctuation: text = "!") -> text:
+    return "Hello, %{_name}%%{_punctuation}%"
+
+on join:
+    message greet(player's name)
+    message greet(player's name, punctuation: "?")</code></pre>
+<ul>
+<li>Parameters are <code>name: type</code>. Add <code>= value</code> to make one optional. Inside the function, use <code>{_name}</code> (or plain <code>name</code>).</li>
+<li><code>-&gt; type</code> says what comes back. Leave it out if nothing does.</li>
+<li>You may write several functions with the same name and different parameter types (overloads); the matching one is picked.</li>
+<li>You can pass by position, or by name as in <code>punctuation: "?"</code>.</li>
+<li><code>async function ...</code> runs on a background thread. <code>local function ...</code> is private to its file.</li>
+<li><code>wait</code> is not allowed inside a function. Use <code>after 5 seconds:</code> instead.</li>
+<li>Recursion works, limited to <code>security.max-recursion-depth</code>.</li>
+</ul></section>
+<section class="page" data-id="time" data-title="Timers and waiting" hidden><p class="crumb">The language</p><h1>Timers and waiting</h1><pre><code>every 10 minutes:
+    broadcast "&amp;eRemember to vote!"
+
+every 1 second async:
+    ...                              # background thread, no world access
+
+at 06:00:                            # every day at 06:00 server time
+    broadcast "&amp;bGood morning!"
+
+cron "*/5 * * * *":                  # minute hour day month weekday
+    log "five minute tick"</code></pre>
+<h3>Inside any block</h3>
+<pre><code>wait 2 seconds                       # pause here, everything else keeps running
+message "two seconds later"
+
+after 10 seconds:                    # run the indented part later, carry on right now
+    broadcast "ten seconds passed"
+
+set {countdown} to 5
+repeat every 1 second as "countdown":    # a repeating task you can stop
+    broadcast "%{countdown}%"
+    remove 1 from {countdown}
+    if {countdown} &lt; 1:
+        cancel this task
+
+cancel all tasks                     # stop this script's repeating tasks</code></pre>
+<p>Each round of a <code>repeat every</code> block starts with a fresh copy of the local variables, so keep running totals in a global variable like <code>{countdown}</code> above. <code>wait</code> never blocks the server; the script resumes later on the right thread. Timespans are written like <code>10 ticks</code> (20 ticks = 1 second), <code>5 seconds</code>, <code>2 minutes</code>, <code>1 hour</code>. Reloading a script cancels its waiting and repeating tasks.</p>
+<p>The clock for <code>at</code> and <code>cron</code> is checked once a second and fires when the minute changes, so a task never runs twice in the same minute and never runs on startup.</p></section>
+<section class="page" data-id="async" data-title="Async and threads" hidden><p class="crumb">The language</p><h1>Async and threads</h1><p>Minecraft's world can only be touched from one thread (the main thread). Slow things, like web requests and database work, must stay off it or the server lags. Vextent gives you two blocks:</p>
+<pre><code>async:                               # background thread
+    set {_r} to http get "https://example.com/data"
+    sync:                            # hop back to the main thread
+        message "Got status %{_r.status}%"</code></pre>
+<ul>
+<li>Inside <code>async:</code> you can do maths, variables, web requests and SQL. Anything that touches players, blocks or entities belongs in <code>sync:</code>. Vextent refuses to load a script that does this wrong and tells you which line.</li>
+<li>Local variables are copied into the block, so changes made in a block do not leak back out. Put results into a global variable or do the next step inside the block.</li>
+<li>Web requests and webhook handlers are covered below.</li>
+</ul></section>
+<section class="page" data-id="errors-lang" data-title="Handling errors" hidden><p class="crumb">The language</p><h1>Handling errors</h1><pre><code>function risky(n: number) -> number:
+    if {_n} &lt; 0:
+        throw "negative"
+    return {_n}
+
+on load:
+    try:
+        log "%risky(1)%"
+        log "%risky(-1)%"
+    catch {_e}:
+        log "caught: %{_e.message}% (%{_e.category}%)"</code></pre>
+<p>The caught error has <code>message</code>, <code>category</code>, <code>line</code> and <code>hint</code>. Without <code>try</code>, an error stops that one run of the script, is printed to the console with the file, line, column and a hint, and the server carries on.</p></section>
+<section class="page" data-id="storage" data-title="Saving data" hidden><p class="crumb">Connecting</p><h1>Saving data</h1><p>Global variables are saved for you. By default they go into <code>plugins/Vextent/data/variables.json</code>. Changes are written in the background every 30 seconds (<code>performance.save-interval-ticks</code>: 600), when you run <code>save variables</code>, and when the server stops. A hard crash can lose up to one interval.</p>
+<table>
+<tr><th>type</th><th>Good for</th></tr>
+<tr><td><code>json</code></td><td>Default. Human-readable file. Fine for small servers.</td></tr>
+<tr><td><code>yaml</code></td><td>Same idea, YAML file.</td></tr>
+<tr><td><code>sqlite</code></td><td>One database file. Better with lots of variables.</td></tr>
+<tr><td><code>mysql</code> / <code>mariadb</code></td><td>Shared by several servers.</td></tr>
+<tr><td><code>memory</code></td><td>Nothing saved. Forgotten at restart.</td></tr>
+</table>
+<p>Change the default in <code>config.yml</code> under <code>storage.default</code>. To send only some variables elsewhere, declare a database in a script:</p>
+<pre><code>database "stats":
+    type: sqlite
+    file: stats.db
+    variables: stats.*
+
+on join:
+    add 1 to {stats.%player's uuid%.joins}</code></pre>
+<p>Variables under <code>stats</code> now live in <code>stats.db</code>. If a database cannot be opened, the script does not load and the error says why; the old version of the script keeps running.</p>
+<h3>Raw SQL</h3>
+<pre><code>sql update "CREATE TABLE IF NOT EXISTS bans (name TEXT, reason TEXT)" in "stats"
+sql update "INSERT INTO bans VALUES (?, ?)" in "stats" with "Steve", "griefing"
+set {_rows::*} to sql query "SELECT * FROM bans WHERE name = ?" in "stats" with "Steve"</code></pre>
+<p>Each row comes back as a map with lower-case column names. Values after <code>with</code> are always sent as parameters, never glued into the text, so they cannot break your query. SQL runs on whatever thread called it, so use it inside <code>async:</code> for anything big.</p></section>
+<section class="page" data-id="http" data-title="Calling web APIs" hidden><p class="crumb">Connecting</p><h1>Calling web APIs</h1><p>Scripts can fetch from and send to other websites, for example a Discord webhook or a stats API. Because a script could otherwise send your server's data anywhere, this is <b>off until you list the websites</b> you trust.</p>
+<h3>Step 1: allow a host</h3>
+<pre><code>security:
+  http:
+    allow:
+      - api.github.com
+      - discord.com
+      - "*.example.org"</code></pre>
+<p>Then <code>/vextent reload</code>. A leading <code>*.</code> allows every sub-domain.</p>
+<h3>Step 2: make the request (always inside <code>async:</code>)</h3>
+<pre><code>async:
+    set {_r} to http get "https://api.example.org/player/steve"
+    if {_r.ok}:
+        log "name: %{_r.json.name}%"
+    else:
+        log warning "failed with %{_r.status}%"
+
+async:
+    http post "https://api.example.org/event" with body [type: "join", who: "Steve"]
+    http put "https://api.example.org/x" with body "plain text"
+    http delete "https://api.example.org/x"
+    http get "https://api.example.org/me" with headers [Authorization: "Bearer abc"]</code></pre>
+<p>Use <code>http get</code>, <code>http delete</code>, <code>http post</code>, <code>http put</code> and <code>http patch</code>. Bodies of <code>post</code>/<code>put</code>/<code>patch</code> come after <code>with body</code>. A list or map body is sent as JSON with the right header added for you; text is sent as is. Add headers with <code>with headers [...]</code> (for <code>get</code> and <code>delete</code>) or <code>and headers [...]</code> (after a body).</p>
+<h3>What you get back</h3>
+<p>A map with these entries:</p>
+<table>
+<tr><th>Entry</th><th>Meaning</th></tr>
+<tr><td><code>status</code></td><td>The HTTP status number, e.g. 200 or 404.</td></tr>
+<tr><td><code>ok</code></td><td>true when the status is 200 to 299.</td></tr>
+<tr><td><code>body</code></td><td>The reply as text.</td></tr>
+<tr><td><code>json</code></td><td>The reply already converted to a map or list, when the server says it is JSON. Otherwise empty.</td></tr>
+<tr><td><code>headers</code></td><td>Reply headers, names in lower case.</td></tr>
+<tr><td><code>url</code></td><td>The final address, after any redirects.</td></tr>
+<tr><td><code>millis</code></td><td>How long it took.</td></tr>
+</table>
+<p>Read entries like <code>{_r.status}</code> or <code>{_r.json.name}</code>. Two JSON helpers exist: <code>tojson(value)</code> and <code>fromjson(text)</code>. <code>urlencode(text)</code> makes text safe to put in an address.</p>
+<h3>How the connection is protected</h3>
+<ul>
+<li><b>HTTPS only by default.</b> Plain <code>http://</code> is refused unless you set <code>allow-insecure: true</code>. Connections use TLS 1.3 or 1.2 and the server certificate and host name are checked against Java's trusted certificate list. HTTP/2 is used when the other side supports it.</li>
+<li><b>Host allow-list.</b> Every address is checked, including each redirect. A redirect to a host you have not allowed, or from https down to http, is refused.</li>
+<li><b>No reaching into your own network.</b> Addresses that resolve to this machine or a private network (127.x, 10.x, 192.168.x, 169.254.x and so on) are refused unless you set <code>allow-private: true</code>.</li>
+<li><b>Credentials do not follow redirects to other hosts.</b> <code>Authorization</code> and <code>Cookie</code> headers are dropped when a redirect leaves the original host.</li>
+<li><b>Limits.</b> 10 second timeout, 1 MB maximum reply, at most 3 redirects, 120 requests a minute for the whole server. All adjustable.</li>
+<li><b>Automatic retry.</b> <code>get</code>, <code>delete</code> and <code>put</code> retry up to 2 times with a short wait if the connection fails or the server answers 502, 503 or 504. <code>post</code> and <code>patch</code> never retry, so nothing is sent twice by accident.</li>
+<li><b>Never on the main thread.</b> A request outside <code>async:</code> is refused with a message telling you to wrap it.</li>
+<li>The server's proxy settings (<code>-Dhttps.proxyHost=...</code>) are honoured.</li>
+</ul>
+<p>Example: tell a Discord channel when someone joins. Replace the address with your own webhook address from Discord.</p>
+<pre><code>function notify(text: text):
+    async:
+        set {_r} to http post "https://discord.com/api/webhooks/YOUR_ID/YOUR_TOKEN" with body [content: {_text}]
+        if not {_r.ok}:
+            log warning "Discord notify failed with status %{_r.status}%"
+
+on join:
+    notify("%player's name% joined the server")</code></pre></section>
+<section class="page" data-id="webhooks" data-title="Receiving webhooks" hidden><p class="crumb">Connecting</p><h1>Receiving webhooks</h1><p>The other direction: another program (a voting site, a payment service, your own website or bot) sends a request <em>to your server</em>, and a script reacts. Vextent includes a small built-in web server for this. It is <b>off by default</b>.</p>
+<h3>Step 1: turn it on</h3>
+<pre><code>webhooks:
+  enabled: true
+  host: 127.0.0.1
+  port: 8765
+  token: 'put-a-long-random-secret-here'</code></pre>
+<ul>
+<li>Vextent refuses to start the web server with an empty token unless you also set <code>allow-anonymous: true</code>. Use a long random token (30+ characters).</li>
+<li><code>host: 127.0.0.1</code> means only programs on the same machine can reach it. To accept requests from the internet set <code>host: 0.0.0.0</code>, open the port in your firewall or hosting panel, and read the security notes below first.</li>
+<li>Changing these needs <code>/vextent reload</code>. The console prints <code>Webhook server listening on ...</code> when it works, and <code>/vextent inspect webhooks</code> lists each address.</li>
+</ul>
+<h3>Step 2: write the script</h3>
+<pre><code>variable {votes.total}: integer = 0
+
+webhook "/vote" post:
+    set {_name} to request-json["username"]
+    if {_name} is not set:
+        respond with status 400 and "missing username"
+        stop
+    add 1 to {votes.total}
+    add 1 to {votes.%{_name}%}
+    broadcast "&amp;6%{_name}% just voted! Total votes: %{votes.total}%"
+    set {_p} to player named {_name}
+    if {_p} is online:
+        give 5 diamond to {_p}
+    respond with status 200 and [ok: true, total: {votes.total}]
+
+webhook "/votes":
+    respond with [total: {votes.total}]</code></pre>
+<p><code>webhook "/path" post:</code> answers one method (<code>get</code>, <code>post</code>, <code>put</code>, <code>delete</code> or <code>patch</code>). Leave the method out to accept any. The block runs on the main thread, so you can use players and the world directly.</p>
+<h3>What the script can see about the request</h3>
+<table>
+<tr><th>Name</th><th>Holds</th></tr>
+<tr><td><code>request-body</code></td><td>The raw body as text.</td></tr>
+<tr><td><code>request-json</code></td><td>The body as a map or list, when the sender says it is JSON. Read with <code>request-json["field"]</code>.</td></tr>
+<tr><td><code>request-query</code></td><td>The part after <code>?</code> in the address, as a map. Names are lower-case: <code>request-query["a"]</code>.</td></tr>
+<tr><td><code>request-headers</code></td><td>Headers as a map, names in lower case. The secret token header is left out.</td></tr>
+<tr><td><code>request-method</code>, <code>request-path</code>, <code>request-ip</code></td><td>Text.</td></tr>
+</table>
+<h3>Replying</h3>
+<pre><code>respond with "pong"                              # status 200, plain text
+respond with [ok: true]                          # status 200, sent as JSON
+respond with status 201 and [id: 7]
+respond with status 404 and "no such thing"</code></pre>
+<p>A list or map reply is sent as JSON, anything else as text. If your script never calls <code>respond</code>, the caller gets <code>{"ok":true}</code>. Call <code>respond</code> before any <code>wait</code>, because the answer is sent as soon as the block first pauses or finishes. If the script takes longer than <code>response-timeout-ms</code> (5 seconds) the caller gets a 504.</p>
+<h3>Calling it</h3>
+<pre><code>curl -X POST "http://127.0.0.1:8765/vote?a=hello" \
+  -H "Authorization: Bearer put-a-long-random-secret-here" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"Steve"}'</code></pre>
+<p>The secret can be sent as <code>Authorization: Bearer ...</code> or as an <code>X-Vextent-Token</code> header. Without it the caller gets 401.</p>
+<h3>What protects it</h3>
+<ul>
+<li>A secret token, compared in a way that does not leak how many characters matched.</li>
+<li>Optional IP allow-list: <code>allowed-ips: [203.0.113.5]</code>.</li>
+<li>Rate limit per sender address (<code>max-requests-per-minute</code>, default 120), body size limit (256 KB) and a response time limit.</li>
+<li>Unknown paths answer 404 without telling the caller anything about your scripts. Errors inside your script are logged on the console but never sent to the caller.</li>
+</ul>
+<div class="warn"><b>Encryption on the open internet</b>The token is sent in every request, so over plain HTTP anyone on the path can read it. If the sender is not on the same machine, use HTTPS. Two ways: (1) keep <code>host: 127.0.0.1</code> and put a reverse proxy such as Caddy or nginx in front, which also gets you a free certificate; or (2) give Vextent a Java keystore under <code>webhooks.tls.keystore</code> (a <code>.p12</code> or <code>.jks</code> file in <code>plugins/Vextent/</code>) with its <code>password</code>, and it serves HTTPS itself with TLS 1.3/1.2. The built-in server is meant for light traffic, such as vote sites and bots, not for a public website.</div>
+<p>The web server runs inside the Minecraft process. If you are on shared hosting, check that your host lets you open the port; many do not.</p></section>
+<section class="page" data-id="java" data-title="Java and add-ons" hidden><p class="crumb">Connecting</p><h1>Java and add-ons</h1><h3>Calling Java from a script</h3>
+<p>Off by default. To turn it on, set <code>security.java-bridge.enabled: true</code> and list each class (or <code>Class#method</code>) a script may touch under <code>security.java-bridge.allow</code>. Anything not listed is refused.</p>
+<pre><code>set {_r} to java static "java.lang.Math#max" with 3, 9</code></pre>
+<p>There are also <code>java call "Class#method" on object with args</code> and <code>java run "..."</code>. The first line above only works once <code>java.lang.Math#max</code> is on the allow list. Treat this as a power tool. Every entry you allow is code a script can run with the server's full permissions.</p>
+<h3>Other plugins</h3>
+<pre><code>if plugin "Vault" is enabled:
+    set {_v} to version of plugin "Vault"
+    log "Vault version: %{_v}%"
+    set {_econ} to service "net.milkbowl.vault.economy.Economy"</code></pre>
+<h3>Writing a Vextent extension (for developers)</h3>
+<p>A Java plugin can add new events, effects, expressions and types. It depends on Vextent, implements <code>VextentExtension</code>, and registers its syntax through the <code>ExtensionContext</code> it is handed. API version is <code>1.0</code>. Everything an extension registers is removed again when the extension or its plugin turns off. <code>/vextent extensions</code> lists what is loaded.</p></section>
+<section class="page" data-id="skript" data-title="Coming from Skript" hidden><p class="crumb">Operating</p><h1>Coming from Skript</h1><p>Put your <code>.sk</code> files in the same <code>scripts</code> folder. Vextent translates them while loading; it does not run Skript's own code. Common things work: <code>options:</code> substitution (<code>{@name}</code>), <code>variables:</code> defaults, <code>send</code>, <code>chance of 30%</code>, <code>exit loop</code>, <code>arg 1</code>, <code>::</code> lists, and function return types written with <code>::</code>.</p>
+<p>Anything it cannot translate is skipped, and the console says which line and why. The rest of the file still runs. Skript add-ons, and any syntax not listed in this guide, are not supported.</p>
+<h3>Converting to Vextent</h3>
+<pre><code>/vextent convert plugins/Vextent/scripts/shop.sk
+/vextent convert plugins/MyOldSkriptFolder</code></pre>
+<p>The path is relative to your server folder. Results go to <code>plugins/Vextent/converted/</code>. Lines that could not be converted are commented out with <code># [vextent] not converted:</code> so you can fix them by hand, and the converted file is checked again before the report. Read the report, test the script, then move it into <code>scripts</code>. Set <code>compatibility.skript: false</code> to ignore <code>.sk</code> files entirely.</p>
+<p>Honest summary: this is a translation of common Skript, not a guarantee that every script behaves identically. Test anything important.</p></section>
+<section class="page" data-id="admin" data-title="The /vextent command" hidden><p class="crumb">Operating</p><h1>The /vextent command</h1><p>Needs <code>vextent.admin</code>. Alias: <code>/vxt</code>.</p>
+<table>
+<tr><th>Command</th><th>What it does</th></tr>
+<tr><td><code>/vextent reload [script]</code></td><td>Re-read config and scripts. Unchanged files are skipped. A script with errors is <em>not</em> swapped in; the previous version keeps running.</td></tr>
+<tr><td><code>/vextent scripts</code></td><td>List loaded scripts with counts and run times, and any that failed.</td></tr>
+<tr><td><code>/vextent errors [number|clear]</code></td><td>Load errors and recent runtime errors. Give a number for the full report.</td></tr>
+<tr><td><code>/vextent debug [on|off]</code></td><td>Extra detail and stack traces. Also enables the <code>debug</code> effect.</td></tr>
+<tr><td><code>/vextent inspect script|var|functions|events|tasks|storage|webhooks</code></td><td>Look inside the running system. <code>inspect var players.steve</code> shows a variable and what is under it.</td></tr>
+<tr><td><code>/vextent profile [reset]</code></td><td>Which scripts and triggers use time (turn on <code>performance.profiling</code>).</td></tr>
+<tr><td><code>/vextent parse &lt;line or script&gt;</code></td><td>Check without running.</td></tr>
+<tr><td><code>/vextent convert &lt;file.sk|folder&gt;</code></td><td>Skript to Vextent.</td></tr>
+<tr><td><code>/vextent extensions</code></td><td>Loaded add-ons.</td></tr>
+<tr><td><code>/vextent version</code></td><td>Version information.</td></tr>
+</table></section>
+<section class="page" data-id="config" data-title="config.yml" hidden><p class="crumb">Operating</p><h1>config.yml</h1><p>All of these are optional; the shipped file shows the defaults. Run <code>/vextent reload</code> after changing.</p>
+<table>
+<tr><th>Key</th><th>Default</th><th>Meaning</th></tr>
+<tr><td><code>performance.async</code></td><td>true</td><td>Allow <code>async:</code> and background tasks. Turn off to run everything on the main thread.</td></tr>
+<tr><td><code>performance.profiling</code></td><td>false</td><td>Measure how long each trigger takes (<code>/vextent profile</code>).</td></tr>
+<tr><td><code>performance.slow-warning-ms</code></td><td>50</td><td>Warn when a script holds the main thread longer than this.</td></tr>
+<tr><td><code>performance.save-interval-ticks</code></td><td>600</td><td>How often changed variables are written (20 ticks = 1 second).</td></tr>
+<tr><td><code>security.max-loop-iterations</code></td><td>1000000</td><td>Largest number of rounds one loop may run.</td></tr>
+<tr><td><code>security.max-recursion-depth</code></td><td>256</td><td>How deep functions may call themselves.</td></tr>
+<tr><td><code>security.max-tasks-per-script</code></td><td>10000</td><td>Pending waits and repeating tasks per script.</td></tr>
+<tr><td><code>security.max-event-depth</code></td><td>32</td><td>Stops a script that triggers itself forever.</td></tr>
+<tr><td><code>security.max-execution-ms</code></td><td>0</td><td>Longest a single run may take before being stopped. 0 means no limit.</td></tr>
+<tr><td><code>security.max-collection-size</code></td><td>1000000</td><td>Largest list or SQL result.</td></tr>
+<tr><td><code>security.max-db-ops-per-second</code></td><td>2000</td><td>Database and web calls per second.</td></tr>
+<tr><td><code>security.console-commands</code></td><td>true</td><td>Allow <code>execute console command</code>.</td></tr>
+<tr><td><code>security.max-explosion-power</code></td><td>10.0</td><td>Cap for <code>create explosion</code>.</td></tr>
+<tr><td><code>security.max-entity-radius</code></td><td>128</td><td>Cap for "entities within N blocks".</td></tr>
+<tr><td><code>security.java-bridge.enabled / allow</code></td><td>false / empty</td><td>Calling Java from scripts. See <a href="#/java">Java</a>.</td></tr>
+<tr><td><code>security.http.allow</code></td><td>empty</td><td>Hosts scripts may contact. Empty means web access is off.</td></tr>
+<tr><td><code>security.http.timeout-ms</code></td><td>10000</td><td>Give up on a request after this long.</td></tr>
+<tr><td><code>security.http.max-response-bytes</code></td><td>1048576</td><td>Largest reply accepted.</td></tr>
+<tr><td><code>security.http.max-redirects</code></td><td>3</td><td>Redirects followed.</td></tr>
+<tr><td><code>security.http.retries</code></td><td>2</td><td>Extra tries for safe requests (get, delete, put).</td></tr>
+<tr><td><code>security.http.max-requests-per-minute</code></td><td>120</td><td>Whole-server cap. 0 for none.</td></tr>
+<tr><td><code>security.http.allow-private</code></td><td>false</td><td>Allow addresses on your own network.</td></tr>
+<tr><td><code>security.http.allow-insecure</code></td><td>false</td><td>Allow plain <code>http://</code>.</td></tr>
+<tr><td><code>security.http.user-agent</code></td><td>Vextent</td><td>Sent with each request.</td></tr>
+<tr><td><code>webhooks.enabled</code></td><td>false</td><td>Run the incoming web server.</td></tr>
+<tr><td><code>webhooks.host / port</code></td><td>127.0.0.1 / 8765</td><td>Where it listens.</td></tr>
+<tr><td><code>webhooks.token</code></td><td>empty</td><td>The shared secret. Required unless <code>allow-anonymous</code>.</td></tr>
+<tr><td><code>webhooks.allow-anonymous</code></td><td>false</td><td>Accept requests without a token. Not recommended.</td></tr>
+<tr><td><code>webhooks.allowed-ips</code></td><td>empty</td><td>If set, only these sender addresses are accepted.</td></tr>
+<tr><td><code>webhooks.max-body-bytes</code></td><td>262144</td><td>Largest request body.</td></tr>
+<tr><td><code>webhooks.max-requests-per-minute</code></td><td>120</td><td>Per sender address.</td></tr>
+<tr><td><code>webhooks.response-timeout-ms</code></td><td>5000</td><td>Answer 504 if the script takes longer.</td></tr>
+<tr><td><code>webhooks.tls.keystore / password</code></td><td>empty</td><td>Serve HTTPS with this keystore file.</td></tr>
+<tr><td><code>compatibility.skript</code></td><td>true</td><td>Load <code>.sk</code> files.</td></tr>
+<tr><td><code>debug.enabled</code></td><td>false</td><td>Stack traces and extra logs.</td></tr>
+<tr><td><code>debug.error-log-size</code></td><td>200</td><td>How many runtime errors are remembered.</td></tr>
+<tr><td><code>storage.default.type / file</code></td><td>json / variables.json</td><td>Where global variables are saved.</td></tr>
+</table></section>
+<section class="page" data-id="trouble" data-title="When something breaks" hidden><p class="crumb">Operating</p><h1>When something breaks</h1><p>Every problem is printed with the same shape: the file, the line, the column, what kind of problem it is, the offending line with a pointer, and a hint.</p>
+<pre>[Vextent] Script error
+
+File: plugins/Vextent/scripts/shop.vxt
+Line: 9
+Column: 35
+Category: Syntax
+
+ERROR: Unexpected character '''
+
+ 9 |     remove {_amount} from {money.%{_from}'s uuid%}
+   |                                   ^
+
+Hint: Remove it, or put it inside a text literal.</pre>
+<p>Category tells you where to look: <b>Syntax</b> (typo or wrong shape), <b>Type</b> (a number was expected and text arrived), <b>Name</b> (unknown word, a suggestion is given), <b>Security</b> (blocked by config), <b>Limit</b> (a safety cap was hit), <b>Thread</b> (world code in the wrong place), <b>Storage</b>, <b>Runtime</b>.</p>
+<table>
+<tr><th>Symptom</th><th>Try</th></tr>
+<tr><td>Script does not run after editing</td><td><code>/vextent reload</code>, then <code>/vextent errors</code>. A failed reload keeps the old version running, so you may be seeing old behaviour.</td></tr>
+<tr><td>"Unknown top-level section"</td><td>A line is not indented under what it belongs to, or the section name is misspelled.</td></tr>
+<tr><td>"must not run on the main server thread"</td><td>Put the web request in <code>async:</code>.</td></tr>
+<tr><td>"HTTP access is disabled"</td><td>Add the host to <code>security.http.allow</code>.</td></tr>
+<tr><td>"points to a private or local address"</td><td>The site resolves to your own network. Set <code>allow-private: true</code> only if you meant that.</td></tr>
+<tr><td>Webhook server did not start</td><td>Missing <code>webhooks.token</code>, port in use, or your host blocks the port.</td></tr>
+<tr><td>Webhook answers 401</td><td>The token header is missing or wrong.</td></tr>
+<tr><td>Webhook answers 404</td><td>Path or method does not match any <code>webhook</code> block. Check <code>/vextent inspect webhooks</code>.</td></tr>
+<tr><td>Variables vanish on restart</td><td>Check <code>storage.default.type</code> is not <code>memory</code>. <code>/vextent inspect storage</code> shows pending writes.</td></tr>
+<tr><td>"took N ms on the main thread"</td><td>A script is doing too much in one go. Move slow work to <code>async:</code> or spread it out with <code>wait</code>.</td></tr>
+</table>
+<p>Turn on <code>/vextent debug on</code> when you need stack traces to send to someone.</p></section>
+<section class="page" data-id="limits" data-title="Limits and honesty" hidden><p class="crumb">Operating</p><h1>Limits and honesty</h1><ul>
+<li><b>Safety limits stop accidents, not attackers.</b> Scripts are code written by people you trust. A script with console commands allowed can do anything an operator can. Give <code>scripts/</code> the same care as your plugins folder.</li>
+<li><b>Speed.</b> Measured on one cloud machine with the interpreter alone (no server): about 14 ns per round of an empty loop, 21 ns with a bit of maths, 44 ns to write a global variable, 1.6 µs to append to a list. That is useful for comparing your own changes; it is not a promise about your server, and no comparison against Skript was run. Real cost is usually dominated by the Minecraft calls your script makes.</li>
+<li><b>Unverified areas.</b> The long list of player events, SQL databases, the Java bridge and add-on API are built and unit-tested, but not yet exercised by real players or third-party plugins.</li>
+<li><b>Declared variable types</b> are checked on the default value only.</li>
+<li><b>Webhook scripts</b> that <code>wait</code> before replying answer with what was set so far.</li>
+</ul></section>
+<section class="page" data-id="cheat" data-title="Cheat sheet" hidden><p class="crumb">Operating</p><h1>Cheat sheet</h1><pre><code># files
+plugins/Vextent/scripts/*.vxt      -name.vxt = off      /vextent reload
+
+# variables
+{_local}   {global}   {tree.%uuid%.x}   {list::*}
+variable {coins}: number = 0
+create variable "a.b" with value 1
+
+# flow
+if / else if / else    loop N times:    loop {list::*}:    for {_k}, {_v} in {_m}:
+while cond:   stop   return x   break   continue   try: / catch {_e}:
+
+# when
+on join:   on break of stone:   cancel event
+command /x &lt;a: player&gt; [b: number]:  (permission, cooldown, trigger:)
+function f(a: text, b: number = 1) -&gt; text:
+every 5 minutes:   at 06:00:   cron "*/5 * * * *":
+wait 2 seconds   after 5 seconds:   repeat every 1 second as "x":
+
+# threads
+async:   sync:
+
+# outside world
+http get/post/put/patch/delete "https://..." [with body x] [with headers m]
+webhook "/path" post:   request-json["k"]   respond with status 200 and [ok: true]
+
+# admin
+/vextent reload | scripts | errors | inspect ... | parse ... | convert ...</code></pre></section>
+
+<div class="pager" id="pager"></div>
+<p class="foot">Vextent by DeadByte. These docs describe version V0.0.1.</p>
+</main>
+<nav class="toc" id="toc" aria-label="On this page"></nav>
+</div>
+</div>
+<script>
+var themes=[
+["Default","default","#b79fd0"],["Deep dark","deep","#000000"],["Contrast","contrast","#ffd60a"],["Light contrast","lightcontrast","#2a0f7a"],["Bright light","bright","#ffffff"],["Ocean","ocean","#3fc1e0"],["Forest","forest","#6fcf8a"],["Rose","rose","#c2185b"],["Mono","mono","#111111"],
+["Terminal","terminal","#7dff9a"],["Sunset","sunset","#ff8a5c"],["Paper","paper","#8a4b14"],
+["Nord","nord","#88c0d0"],["Dracula","dracula","#bd93f9"],["Solarized","solarized","#268bd2"],["Gruvbox","gruvbox","#fabd2f"],["Cyberpunk","cyber","#ff2a6d"],["Modrinth","modrinth","#1bd96a"],["GitHub Dark","ghdark","#238636"],["GitHub Light","ghlight","#0969da"],["Discord","discord","#5865f2"],["Spotify","spotify","#1ed760"],["Notion","notion","#2383e2"],["Hacker News","hn","#ff6600"],["Steam","steam","#66c0f4"],["Stack Overflow","stackoverflow","#f48024"],["macOS","macos","#0a6cff"],["Windows 11","win11","#0067c0"],["Windows XP","winxp","#3a6ea5"],["Windows 95","win95","#008080"],["Windows 7","win7","#4a90d9"],["Ubuntu","ubuntu","#e95420"],["Windows 10","win10","#0078d7"],["KDE Plasma","kde","#3daee9"],["Mac OS 9","macos9","#6e8caa"],["Android","android","#6750a4"]
+];
+</script>
+<script>
+(function(){
+var root=document.documentElement;
+function paintIcon(){
+var css=getComputedStyle(root),a=css.getPropertyValue("--l1").trim(),b=css.getPropertyValue("--l2").trim(),c=css.getPropertyValue("--l3").trim();
+var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 106 504 256"><defs><linearGradient id="g" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+a+'"/><stop offset=".45" stop-color="'+b+'"/><stop offset="1" stop-color="'+c+'"/></linearGradient></defs><path fill="url(#g)" d="M16 106H100L173 218L240 106H330L167 362Z"/><path fill="url(#g)" d="M392 106L376 134.4L360 106L358 106L299.6 197.7L320 234L248 362L360 362L376 333.6L392 362L504 362L432 234L504 106Z"/></svg>';
+var uri="data:image/svg+xml,"+encodeURIComponent(svg);
+root.style.setProperty("--icon","url(\""+uri+"\")");
+document.getElementById("fav").href=uri;
+}
+var labels={};themes.forEach(function(item){labels[item[1]]=item[0]});
+var menu=document.getElementById("menu"),button=document.getElementById("themebtn"),label=document.getElementById("themename");
+function drawMenu(){
+var now=root.getAttribute("data-theme");
+var html="";
+themes.forEach(function(item,n){
+if(n===0)html+='<div class="mh">Standard</div>';
+if(item[1]==="terminal")html+='<div class="mh">More</div>';
+if(item[1]==="modrinth")html+='<div class="mh">Sites</div>';
+if(item[1]==="macos")html+='<div class="mh">Operating systems</div>';
+html+='<button type="button" role="menuitem" data-t="'+item[1]+'"'+(item[1]===now?' class="on"':"")+'><i style="background:'+item[2]+'"></i>'+item[0]+"</button>";
+});
+menu.innerHTML=html;
+label.textContent=labels[now]||"Default";
+}
+function pickTheme(name){
+if(!labels[name])name="default";
+root.classList.add("fading");
+root.setAttribute("data-theme",name);
+try{localStorage.setItem("vx-theme2",name)}catch(e){}
+drawMenu();paintIcon();
+setTimeout(function(){root.classList.remove("fading")},500);
+var page=document.querySelector(".page:not([hidden])");
+if(page){page.classList.remove("enter");void page.offsetWidth;page.classList.add("enter")}
+}
+if(!labels[root.getAttribute("data-theme")])root.setAttribute("data-theme","default");
+drawMenu();paintIcon();
+button.addEventListener("click",function(e){e.stopPropagation();var open=menu.classList.toggle("open");button.setAttribute("aria-expanded",open)});
+menu.addEventListener("click",function(e){var item=e.target.closest("button[data-t]");if(!item)return;pickTheme(item.getAttribute("data-t"));menu.classList.remove("open")});
+document.addEventListener("click",function(e){if(!e.target.closest(".themewrap"))menu.classList.remove("open")});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")menu.classList.remove("open")});
+requestAnimationFrame(function(){document.body.classList.add("ready")});
+document.getElementById("burger").addEventListener("click",function(){document.body.classList.toggle("open")});
+})();
+</script>
+<script>
+(function(){
+var words="on command function trigger if else loop for while in set add remove delete return stop exit break continue async sync wait after every at cron webhook respond cancel uncancel variable const config enum database try catch throw let create repeat message broadcast send teleport give heal kick log execute make spawn show play apply open close with and or not is to from of as then".split(" ");
+var wordset={};words.forEach(function(w){wordset[w]=1});
+function safe(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function paint(text){
+var out="";
+text.split("\n").forEach(function(row,num){
+if(num)out+="\n";
+var at=0,len=row.length;
+while(at<len){
+var ch=row[at];
+if(ch==="#"){out+='<span class="cm">'+safe(row.slice(at))+"</span>";at=len;break}
+if(ch==='"'){
+var end=at+1;
+while(end<len){if(row[end]==='"'){if(row[end+1]==='"'){end+=2;continue}break}end++}
+out+='<span class="st">'+safe(row.slice(at,end+1))+"</span>";at=end+1;continue;
+}
+if(ch==="{"){
+var depth=0,stop=at;
+while(stop<len){if(row[stop]==="{")depth++;else if(row[stop]==="}"){depth--;if(!depth)break}stop++}
+out+='<span class="vr">'+safe(row.slice(at,stop+1))+"</span>";at=stop+1;continue;
+}
+if(/[0-9]/.test(ch)&&(at===0||!/[A-Za-z_]/.test(row[at-1]))){
+var num2=/^[0-9]+(\.[0-9]+)?/.exec(row.slice(at));
+out+='<span class="nu">'+num2[0]+"</span>";at+=num2[0].length;continue;
+}
+if(/[A-Za-z_]/.test(ch)){
+var word=/^[A-Za-z_][A-Za-z0-9_-]*/.exec(row.slice(at))[0];
+out+=wordset[word]&&(at===0||!/[A-Za-z0-9_.]/.test(row[at-1]))?'<span class="kw">'+word+"</span>":safe(word);
+at+=word.length;continue;
+}
+out+=safe(ch);at++;
+}
+});
+return out;
+}
+document.querySelectorAll("pre").forEach(function(box){
+var code=box.querySelector("code");
+var text=(code||box).textContent;
+if(code&&!/^\s*(curl|\/vextent|plugins\/|\[Vextent\])/.test(text)&&!box.classList.contains("plain"))code.innerHTML=paint(text);
+var btn=document.createElement("button");btn.className="cp";btn.type="button";btn.textContent="Copy";
+btn.addEventListener("click",function(){
+var done=function(){btn.textContent="Copied";setTimeout(function(){btn.textContent="Copy"},1200)};
+if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done,function(){});
+else{var area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{document.execCommand("copy");done()}catch(e){}document.body.removeChild(area)}
+});
+box.appendChild(btn);
+});
+
+var pages=[].slice.call(document.querySelectorAll(".page"));
+var list=pages.map(function(page){return page.getAttribute("data-id")});
+var find={};pages.forEach(function(page){find[page.getAttribute("data-id")]=page});
+var links=[].slice.call(document.querySelectorAll("#side a"));
+var toc=document.getElementById("toc"),pager=document.getElementById("pager");
+var watch=null;
+function show(forced){
+var hash=typeof forced==="string"?forced:(location.hash.replace(/^#\/?/,"")||"home");
+var id=find[hash]?hash:"home";
+pages.forEach(function(page){page.hidden=page.getAttribute("data-id")!==id});
+links.forEach(function(link){link.classList.toggle("on",link.getAttribute("data-id")===id)});
+document.title=(id==="home"?"Vextent Documentation":find[id].getAttribute("data-title")+" · Vextent");
+document.body.classList.remove("open");
+var page=find[id];
+page.classList.remove("enter");void page.offsetWidth;page.classList.add("enter");
+var heads=[].slice.call(page.querySelectorAll("h3"));
+toc.innerHTML=heads.length?"<b>On this page</b>":"";
+heads.forEach(function(head,n){
+head.id=id+"-s"+n;
+var link=document.createElement("a");link.href="javascript:void 0";link.textContent=head.textContent;
+link.addEventListener("click",function(e){e.preventDefault();head.scrollIntoView({behavior:"smooth",block:"start"})});
+toc.appendChild(link);
+});
+var spot=list.indexOf(id);
+var back=list[spot-1],next=list[spot+1];
+pager.innerHTML=(back?'<a href="#/'+(back==="home"?"":back)+'"><small>Previous</small><span>'+find[back].getAttribute("data-title")+"</span></a>":"<span></span>")+(next?'<a class="nx" href="#/'+next+'"><small>Next</small><span>'+find[next].getAttribute("data-title")+"</span></a>":"");
+window.scrollTo(0,0);
+if(watch)window.removeEventListener("scroll",watch);
+if(heads.length){
+var tocLinks=[].slice.call(toc.querySelectorAll("a"));
+watch=function(){var now=0;for(var n=0;n<heads.length;n++){if(heads[n].getBoundingClientRect().top<140)now=n}tocLinks.forEach(function(link,n){link.classList.toggle("on",n===now)})};
+window.addEventListener("scroll",watch,{passive:true});watch();
+}
+}
+window.addEventListener("hashchange",function(){show()});
+function go(href){
+var id=href.replace(/^#\/?/,"")||"home";
+try{history.pushState(null,"",href)}catch(e){try{location.hash=href}catch(e2){}}
+show(id);
+}
+document.addEventListener("click",function(e){
+var link=e.target.closest&&e.target.closest('a[href^="#/"],a[href="#/"]');
+if(!link||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
+e.preventDefault();
+go(link.getAttribute("href"));
+});
+document.querySelector("[data-dl]").addEventListener("click",function(e){
+e.stopPropagation();e.preventDefault();
+go("#/");
+setTimeout(function(){var box=document.getElementById("downloads");if(box)box.scrollIntoView({behavior:"smooth"})},60);
+});
+show();
+
+var index=pages.map(function(page){return{id:page.getAttribute("data-id"),title:page.getAttribute("data-title"),text:page.textContent.replace(/\s+/g," ")}});
+var input=document.getElementById("q"),box=document.getElementById("res"),pick=-1;
+function look(){
+var word=input.value.trim().toLowerCase();
+if(!word){box.style.display="none";return}
+var found=[];
+index.forEach(function(page){
+var inTitle=page.title.toLowerCase().indexOf(word),inText=page.text.toLowerCase().indexOf(word);
+if(inTitle>=0||inText>=0){
+var bit=inText>=0?page.text.slice(Math.max(0,inText-40),inText+90):page.text.slice(0,110);
+found.push({page:page,rank:inTitle>=0?0:1,bit:bit});
+}
+});
+found.sort(function(a,b){return a.rank-b.rank});
+pick=-1;
+box.innerHTML=found.length?found.slice(0,8).map(function(item){return'<a href="#/'+(item.page.id==="home"?"":item.page.id)+'">'+safe(item.page.title)+"<small>"+safe(item.bit)+"</small></a>"}).join(""):'<div class="none">No results</div>';
+box.style.display="block";
+}
+input.addEventListener("input",look);
+input.addEventListener("keydown",function(e){
+var rows=[].slice.call(box.querySelectorAll("a"));
+if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();pick=(pick+(e.key==="ArrowDown"?1:-1)+rows.length)%Math.max(rows.length,1);rows.forEach(function(row,n){row.classList.toggle("sel",n===pick)})}
+else if(e.key==="Enter"&&rows.length){go(rows[Math.max(pick,0)].getAttribute("href"));input.value="";box.style.display="none";input.blur()}
+else if(e.key==="Escape"){input.value="";box.style.display="none";input.blur()}
+});
+box.addEventListener("click",function(){input.value="";box.style.display="none"});
+document.addEventListener("click",function(e){if(!e.target.closest(".search"))box.style.display="none"});
+document.addEventListener("keydown",function(e){if(e.key==="/"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();input.focus()}});
+})();
+</script>
+</body>
+</html>
